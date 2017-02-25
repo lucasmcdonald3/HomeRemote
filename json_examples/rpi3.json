@@ -1,0 +1,12 @@
+{
+	"metadata": {
+		"version": 1,
+		"FullName": "Raspberry Pi 3",
+		"string": "",
+		"author": "aipark2"
+	},
+	"devices": [
+		"test_led",
+		"test_motor"
+	]
+}

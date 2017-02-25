@@ -1,0 +1,3 @@
+{
+	"controllers": ["rpi3", "arduino"]
+}

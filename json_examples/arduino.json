@@ -1,0 +1,11 @@
+{
+	"metadata": {
+		"version": 1,
+		"FullName": "Arduino",
+		"string": "",
+		"author": "aipark2"
+	},
+	"devices": [
+		"test_dummy"
+	]
+}
