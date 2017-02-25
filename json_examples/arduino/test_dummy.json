@@ -1,8 +1,10 @@
 {
 	"metadata": {
-		"version": "dummy text",
+		"version": 1,
+		"FullName": "Dummy adapter object",
 		"string": "RIP AARP at HackIllinois 2017",
 		"author": "aipark2"
 	},
+	"RemoteType": "button",
 	"files": []
 } 
