@@ -21,6 +21,8 @@
 		A0633B7F1E614D01007934B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0633B7E1E614D01007934B6 /* Assets.xcassets */; };
 		A0633B821E614D01007934B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0633B801E614D01007934B6 /* LaunchScreen.storyboard */; };
 		A0633B8D1E614D01007934B6 /* HomeRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */; };
+		A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */; };
+		A09D71281E6244CC0019D299 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71271E6244CC0019D299 /* Device.swift */; };
 		BCEF9735F307B7EA213577E2 /* Pods_HomeRemoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 482201D0205F621B959D6053 /* Pods_HomeRemoteTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		A0633B881E614D01007934B6 /* HomeRemoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeRemoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteTests.swift; sourceTree = "<group>"; };
 		A0633B8E1E614D01007934B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRemoteViewController.swift; sourceTree = "<group>"; };
+		A09D71271E6244CC0019D299 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		E00C082AC0F603BAAA534A13 /* Pods-HomeRemote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRemote.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeRemote/Pods-HomeRemote.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +150,8 @@
 				A0633B831E614D01007934B6 /* Info.plist */,
 				A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */,
 				A04C1BEA1E6228590095646C /* Project.swift */,
+				A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */,
+				A09D71271E6244CC0019D299 /* Device.swift */,
 			);
 			path = HomeRemote;
 			sourceTree = "<group>";
@@ -371,7 +377,9 @@
 				A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
+				A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */,
 				A04C1BEB1E6228590095646C /* Project.swift in Sources */,
+				A09D71281E6244CC0019D299 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 import UIKit
 import Foundation
+import Firebase
 
 class LoginViewController: UIViewController {
     
@@ -93,6 +94,7 @@ class LoginViewController: UIViewController {
                 let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                 menu.objects.append(Project.init(username: self.usernameField.text!, ip: self.ipField.text!, password: self.passwordField.text!, remote: ""))
                 
+                
 
                 self.present(menu, animated:true, completion:nil)
                 
@@ -129,5 +131,39 @@ class LoginViewController: UIViewController {
     // hides keyboard when tapping out of text field
     func keyboardHide() {
         view.endEditing(true)
+    }
+    @IBAction func AndrewButton(_ sender: UIButton) {
+        // Get a reference to the storage service using the default Firebase App
+        
+        // Get a reference to the storage service using the default Firebase App
+        let storage = FIRStorage.storage()
+        
+        // Create a storage reference from our storage service
+        let storageRef = storage.reference()
+        
+        let ctrlJson = storageRef.child("_controllers.json")
+        
+        let ONE_MiB = 1024*1024 // will any
+        
+        var controllers: [Any]
+        controllers = []
+        
+        ctrlJson.data(withMaxSize: Int64(ONE_MiB)) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print(error)
+                // pop up some sort of message
+                return;
+            } else {
+                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                
+                if let dictionary = json as? [String: Any] {
+                    if let arr = dictionary["controllers"] as? [String] {
+                        controllers = arr
+                        print(controllers)
+                    }
+                }
+            }
+        }
     }
 }

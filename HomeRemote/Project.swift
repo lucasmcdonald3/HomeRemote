@@ -10,17 +10,22 @@ import Foundation
 
 class Project {
     
-    var connectionUsername:String
-    var connectionIP:String
-    var connectionPassword:String
+    var device:Device
     
     var remoteType:String
     
-    init(username: String, ip: String, password: String, remote: String) {
-        connectionUsername = username
-        connectionIP = ip
-        connectionPassword = password
+    var projectName:String
+    var projectDescription:String
+    
+    
+    init(d: Device, remote: String) {
+        device = d
+        
         remoteType = remote
+        
+        projectName = ""
+        projectDescription = ""
+        
     }
     
 }

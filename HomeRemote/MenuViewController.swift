@@ -90,7 +90,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell:UITableViewCell = projectsList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = objects[indexPath.row].connectionUsername
+        cell.textLabel?.text = objects[indexPath.row].connectionUsername + ": " + objects[indexPath.row].projectName
         
         return cell
     }
