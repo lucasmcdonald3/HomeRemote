@@ -12,7 +12,8 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
-
+    var objectNumber = 0
+    @IBOutlet weak var tableCells: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,16 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    // plus button
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
+        
+        // TODO: add project from firebase
+        
+        //insert new cell into table
+        objects.insert("Firebase Project Name" + String(objectNumber), at: 0)
+        objectNumber+=1
         let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.insertRows(at: [indexPath], with: .automatic)
     }
@@ -48,7 +56,7 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row] as! String
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -70,7 +78,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
+        let object = objects[indexPath.row] as! String
         cell.textLabel!.text = object.description
         return cell
     }

@@ -10,6 +10,7 @@ target 'HomeRemote' do
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+  pod 'NMSSH'
 
   target 'HomeRemoteTests' do
     inherit! :search_paths

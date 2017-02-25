@@ -24,11 +24,13 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
+  - NMSSH (2.2.6)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - NMSSH
 
 SPEC CHECKSUMS:
   Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
@@ -39,7 +41,8 @@ SPEC CHECKSUMS:
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  NMSSH: f429af1a564e154450dd99cf47eced2574779b13
 
-PODFILE CHECKSUM: 4c74c45a3a6f931eabebdd068917f36df075a6ed
+PODFILE CHECKSUM: 0970a220733e64a81178d7f87bb706b2ac26c66f
 
 COCOAPODS: 1.2.0

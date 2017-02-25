@@ -11,8 +11,7 @@
 		A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */; };
 		A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0C1E6151F200BE17BA /* LoginViewController.swift */; };
 		A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0E1E61520200BE17BA /* DataViewController.swift */; };
-		A021EA131E61535800BE17BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A021EA111E61535800BE17BA /* CFNetwork.framework */; };
-		A021EA141E61535800BE17BA /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A021EA121E61535800BE17BA /* NMSSH.framework */; };
+		A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BE41E61FD460095646C /* MenuViewController.swift */; };
 		A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B751E614D01007934B6 /* AppDelegate.swift */; };
 		A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B771E614D01007934B6 /* MasterViewController.swift */; };
 		A0633B7A1E614D01007934B6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B791E614D01007934B6 /* DetailViewController.swift */; };
@@ -42,9 +41,8 @@
 		A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnection.swift; sourceTree = "<group>"; };
 		A021EA0C1E6151F200BE17BA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = HomeRemote/LoginViewController.swift; sourceTree = "<group>"; };
 		A021EA0E1E61520200BE17BA /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = HomeRemote/DataViewController.swift; sourceTree = "<group>"; };
-		A021EA111E61535800BE17BA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CFNetwork.framework; sourceTree = "<group>"; };
-		A021EA121E61535800BE17BA /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		A021EA151E61536B00BE17BA /* HomeRemote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeRemote-Bridging-Header.h"; sourceTree = "<group>"; };
+		A04C1BE41E61FD460095646C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A0633B721E614D01007934B6 /* HomeRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0633B751E614D01007934B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0633B771E614D01007934B6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A021EA141E61535800BE17BA /* NMSSH.framework in Frameworks */,
-				A021EA131E61535800BE17BA /* CFNetwork.framework in Frameworks */,
 				81AE2AB55E16D730326E169F /* Pods_HomeRemote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,8 +109,6 @@
 		A0633B691E614D01007934B6 = {
 			isa = PBXGroup;
 			children = (
-				A021EA111E61535800BE17BA /* CFNetwork.framework */,
-				A021EA121E61535800BE17BA /* NMSSH.framework */,
 				A021EA101E61520E00BE17BA /* QRT Files */,
 				A0633B741E614D01007934B6 /* HomeRemote */,
 				A0633B8B1E614D01007934B6 /* HomeRemoteTests */,
@@ -136,6 +130,7 @@
 		A0633B741E614D01007934B6 /* HomeRemote */ = {
 			isa = PBXGroup;
 			children = (
+				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
 				A0633B751E614D01007934B6 /* AppDelegate.swift */,
 				A0633B771E614D01007934B6 /* MasterViewController.swift */,
 				A0633B791E614D01007934B6 /* DetailViewController.swift */,
@@ -365,6 +360,7 @@
 				A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */,
 				A0633B7A1E614D01007934B6 /* DetailViewController.swift in Sources */,
 				A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */,
+				A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */,
 				A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
