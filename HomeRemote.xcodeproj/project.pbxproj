@@ -12,6 +12,8 @@
 		A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0C1E6151F200BE17BA /* LoginViewController.swift */; };
 		A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0E1E61520200BE17BA /* DataViewController.swift */; };
 		A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BE41E61FD460095646C /* MenuViewController.swift */; };
+		A04C1BE71E6223EC0095646C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */; };
+		A04C1BEB1E6228590095646C /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BEA1E6228590095646C /* Project.swift */; };
 		A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B751E614D01007934B6 /* AppDelegate.swift */; };
 		A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B771E614D01007934B6 /* MasterViewController.swift */; };
 		A0633B7A1E614D01007934B6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B791E614D01007934B6 /* DetailViewController.swift */; };
@@ -39,13 +41,15 @@
 		5F3656D6714F21475723FD76 /* Pods-HomeRemoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRemoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeRemoteTests/Pods-HomeRemoteTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EE33A6AE504D04819A98267 /* Pods_HomeRemote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRemote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnection.swift; sourceTree = "<group>"; };
-		A021EA0C1E6151F200BE17BA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = HomeRemote/LoginViewController.swift; sourceTree = "<group>"; };
+		A021EA0C1E6151F200BE17BA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A021EA0E1E61520200BE17BA /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = HomeRemote/DataViewController.swift; sourceTree = "<group>"; };
 		A021EA151E61536B00BE17BA /* HomeRemote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeRemote-Bridging-Header.h"; sourceTree = "<group>"; };
 		A04C1BE41E61FD460095646C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A04C1BEA1E6228590095646C /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A0633B721E614D01007934B6 /* HomeRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0633B751E614D01007934B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A0633B771E614D01007934B6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		A0633B771E614D01007934B6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = HomeRemote/MasterViewController.swift; sourceTree = "<group>"; };
 		A0633B791E614D01007934B6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A0633B7C1E614D01007934B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A0633B7E1E614D01007934B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,8 +104,8 @@
 		A021EA101E61520E00BE17BA /* QRT Files */ = {
 			isa = PBXGroup;
 			children = (
-				A021EA0C1E6151F200BE17BA /* LoginViewController.swift */,
 				A021EA0E1E61520200BE17BA /* DataViewController.swift */,
+				A0633B771E614D01007934B6 /* MasterViewController.swift */,
 			);
 			name = "QRT Files";
 			sourceTree = "<group>";
@@ -130,9 +134,9 @@
 		A0633B741E614D01007934B6 /* HomeRemote */ = {
 			isa = PBXGroup;
 			children = (
+				A021EA0C1E6151F200BE17BA /* LoginViewController.swift */,
 				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
 				A0633B751E614D01007934B6 /* AppDelegate.swift */,
-				A0633B771E614D01007934B6 /* MasterViewController.swift */,
 				A0633B791E614D01007934B6 /* DetailViewController.swift */,
 				A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */,
 				A021EA151E61536B00BE17BA /* HomeRemote-Bridging-Header.h */,
@@ -140,6 +144,8 @@
 				A0633B7E1E614D01007934B6 /* Assets.xcassets */,
 				A0633B801E614D01007934B6 /* LaunchScreen.storyboard */,
 				A0633B831E614D01007934B6 /* Info.plist */,
+				A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */,
+				A04C1BEA1E6228590095646C /* Project.swift */,
 			);
 			path = HomeRemote;
 			sourceTree = "<group>";
@@ -245,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0633B821E614D01007934B6 /* LaunchScreen.storyboard in Resources */,
+				A04C1BE71E6223EC0095646C /* GoogleService-Info.plist in Resources */,
 				A0633B7F1E614D01007934B6 /* Assets.xcassets in Resources */,
 				A0633B7D1E614D01007934B6 /* Main.storyboard in Resources */,
 			);
@@ -364,6 +371,7 @@
 				A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
+				A04C1BEB1E6228590095646C /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

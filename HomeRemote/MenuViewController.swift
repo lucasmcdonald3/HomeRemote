@@ -14,13 +14,14 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellReuseIdentifier = "cell"
-    var objects = [String]()
+    var objects = [Project]()
     var objectNumber = 0
     
     @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
     
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         if(projectsList.isEditing){
@@ -36,8 +37,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         // TODO: add project from firebase
         
         //insert new cell into table
-        objects.append("Firebase Project Name" + String(objectNumber))
-        objectNumber+=1
+        
+        objects.append(Project.init(username: "No", ip: "Mebbe", password: "hunter2", remote: "hi"))
+        
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.set(objects, forKey:"projects")
+        
+        userDefaults.synchronize()
+        
         /*let indexPath = IndexPath(row: 0, section: 0)
         projectsList.insertRows(at: [indexPath], with: .automatic)
         projectsList.endUpdates()*/
@@ -62,6 +70,13 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         // This view controller itself will provide the delegate methods and row data for the table view.
         projectsList.delegate = self
         projectsList.dataSource = self
+        
+        let userDefaults = UserDefaults.standard
+        if userDefaults.object(forKey: "projects") != nil {
+            objects = userDefaults.object(forKey: "projects") as! [Project]
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,7 +90,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell:UITableViewCell = projectsList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = objects[indexPath.row]
+        cell.textLabel?.text = objects[indexPath.row].connectionUsername
         
         return cell
     }

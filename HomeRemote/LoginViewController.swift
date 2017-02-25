@@ -88,30 +88,31 @@ class LoginViewController: UIViewController {
                 userDefaults.setValue(passwordField.text, forKey: "passKey")
                 userDefaults.synchronize()
                 
-                // switch view to DataViewController
+                // switch view to MenuViewController
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let menu = storyBoard.instantiateViewController(withIdentifier: "DataViewController") as! DataViewController
+                let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                menu.objects.append(Project.init(username: self.usernameField.text!, ip: self.ipField.text!, password: self.passwordField.text!, remote: ""))
                 
-                // give DataVC the data it needs to reinitialize the ssh connection
-                menu.username = self.usernameField.text!
-                menu.ip = self.ipField.text!
-                menu.password = self.passwordField.text!
-                menu.session = self.session
+
                 self.present(menu, animated:true, completion:nil)
                 
 
             } else {
                 // case for correct login information but incorrect password
-                let alert = UIAlertController(title: "Incorrect Password", message: "Connected to the Pi properly, but with an incorrect password.", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Incorrect Password", message: "Connected to the device properly, but with an incorrect password.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         } else {
             // case for incorrect login information
-            let alert = UIAlertController(title: "Connection Failed", message: "Failed to connect to the Pi. Your username/IP may be wrong or the Pi may be offline.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Connection Failed", message: "Failed to connect to the device. Your username/IP may be wrong or the device may be offline.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func infoPressed(_ sender: UIButton) {
+        _ = UIAlertController(title: "Add a Device", message: "TODO", preferredStyle: UIAlertControllerStyle.alert)
     }
     
     
