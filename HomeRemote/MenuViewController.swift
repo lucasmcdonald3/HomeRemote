@@ -97,6 +97,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             // give SRVC the data it needs to reinitialize the ssh connection
             stepVC.session = self.session
             self.present(stepVC, animated:true, completion:nil)
+        } else if(project.remoteType == "button"){
+            // switch view to DataViewController
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let buttonVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
+            
+            // give SRVC the data it needs to reinitialize the ssh connection
+            buttonVC.session = self.session
+            self.present(buttonVC, animated:true, completion:nil)
         }
     }
     

@@ -97,7 +97,7 @@
         <!--Stepper Remote View Controller-->
         <scene sceneID="0jX-PW-s2M">
             <objects>
-                <viewController id="3N4-Vl-ncf" customClass="StepperRemoteViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StepperRemoteViewController" id="3N4-Vl-ncf" customClass="StepperRemoteViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bsa-De-RNX"/>
                         <viewControllerLayoutGuide type="bottom" id="Nq2-v1-8wE"/>
@@ -106,22 +106,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUN-gn-YKY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stepper Remote" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUN-gn-YKY">
                                 <rect key="frame" x="16" y="40" width="343" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3x1-BI-gEd">
-                                <rect key="frame" x="158" y="289" width="59" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3x1-BI-gEd">
+                                <rect key="frame" x="180.5" y="289" width="14.5" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PhZ-F7-2cF">
-                                <rect key="frame" x="158" y="459" width="60" height="36"/>
+                                <rect key="frame" x="180.5" y="459" width="42" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="3N4-Vl-ncf" eventType="touchUpInside" id="xQh-4a-IIs"/>
                                 </connections>
@@ -182,7 +182,7 @@
         <!--Button Remote View Controller-->
         <scene sceneID="bed-fV-3w6">
             <objects>
-                <viewController id="wXw-Zf-Rwa" customClass="ButtonRemoteViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ButtonRemoteViewController" id="wXw-Zf-Rwa" customClass="ButtonRemoteViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kBT-Nz-YCF"/>
                         <viewControllerLayoutGuide type="bottom" id="VeD-mQ-pGU"/>
@@ -393,7 +393,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7K-uO-ITc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="-664"/>
+            <point key="canvasLocation" x="4154" y="-638"/>
         </scene>
     </scenes>
 </document>
