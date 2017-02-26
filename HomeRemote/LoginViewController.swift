@@ -83,42 +83,22 @@ class LoginViewController: UIViewController {
 
     
     // called when the user attempts to login with the entered information
-    func attemptLogin(){
+    func saveDeviceInfo(){
         
-        // initializes session with new info
-        session = SSHConnection.init(username: usernameField.text!, ip: ipField.text!, password: passwordField.text!, connect: true)
+        // store login info for next time
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(usernameField.text, forKey: "userKey")
+        userDefaults.setValue(ipField.text, forKey: "ipKey")
+        userDefaults.setValue(passwordField.text, forKey: "passKey")
+        userDefaults.synchronize()
         
-        // checks if connection was successful
-        if session.checkConnection(){
-            //checks if password authentication was successful
-            if session.checkAuthorization() {
-                
-                // store login info for next time
-                let userDefaults = UserDefaults.standard
-                userDefaults.setValue(usernameField.text, forKey: "userKey")
-                userDefaults.setValue(ipField.text, forKey: "ipKey")
-                userDefaults.setValue(passwordField.text, forKey: "passKey")
-                userDefaults.synchronize()
-                
-                // switch view to MenuViewController
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                menu.devices.append(Device.init(u: self.usernameField.text!, i: self.ipField.text!, p: self.passwordField.text!, n: self.nicknameField.text!))
-                
-                self.present(menu, animated:true, completion:nil)
-                
-            } else {
-                // case for correct login information but incorrect password
-                let alert = UIAlertController(title: "Incorrect Password", message: "The password provided is wrong.", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-        } else {
-            // case for incorrect login information
-            let alert = UIAlertController(title: "Connection Failed", message: "Failed to connect to the device. The device may be offline, or you may have mistyped the IP address or credentials.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        // switch view to MenuViewController
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        menu.devices.append(Device.init(u: self.usernameField.text!, i: self.ipField.text!, p: self.passwordField.text!, n: self.nicknameField.text!))
+        
+        self.present(menu, animated:true, completion:nil)
+        
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {
@@ -130,12 +110,12 @@ class LoginViewController: UIViewController {
     
     // called from passwordfield's go button
     @IBAction func loginFromGoKeyboard(_ sender: AnyObject) {
-        attemptLogin()
+        saveDeviceInfo()
     }
 
     // called from the login button on the screen
     @IBAction func loginButton(_ sender: UIButton) {
-        attemptLogin()
+        saveDeviceInfo()
     }
     
     // hides keyboard when tapping out of text field
