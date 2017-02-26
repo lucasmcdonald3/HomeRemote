@@ -519,12 +519,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Lkl-yd-9Sk" id="XvU-nj-RfD"/>
-                            <outlet property="delegate" destination="Lkl-yd-9Sk" id="CIm-wa-rTp"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Find Device Hub" id="mXT-pb-rcS"/>
+                    <connections>
+                        <outlet property="hubList" destination="P5k-j5-wat" id="h8A-pX-1tR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCL-cg-Hgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
