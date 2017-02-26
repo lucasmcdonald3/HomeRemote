@@ -1,12 +1,21 @@
-import RPi.GPIO as GPIO
-import sys
-import time
+import RPi.GPIO as GP
+
+''' RPi.GPIO is a standard class for controlling the GPIO pins on a Raspberry Pi.
+    It provides numerous functionalities for controlling GPIO pins, including PWM and controlling multiple pins. '''
+
+''' Here we provide a class for our LED controller. We create an object of this class below.
+    We have programmed this to only work with one method, powerOnOff.
+    This is an example of minimizing the number of needed methods.'''
 
 class LEDController():
     def __init__(self):
-
+	
+	
+	''' We store the current state of the LED in a .txt file.'''
         outputfile = open('/home/pi/Downloads/LEDController/power.txt')
-
+	
+	''' Here we convert the current state of the LED to a float for the program to work with.'''
+	
         for line in outputfile:
             for numstr in line.split(","):
                 if numstr:
@@ -19,9 +28,13 @@ class LEDController():
              
         self.power = numFl
         outputfile.close()
+	
+	''' Here we set up the GPIO pins. We used pin 8 in our design.'''
+	
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(8, GPIO.OUT)
-        
+    
+    # This is our only method: powerOnOff. It uses the stored value of the LED, then flips the GPIOs to the opposite state.
     def powerOnOff(self):
         if(self.power == 1):
             self.power = 0
@@ -29,71 +42,7 @@ class LEDController():
         else:
             self.power = 1
             GPIO.output(8, GPIO.HIGH)
+		
+	# Now we store the new value of the LED's current state into the .txt file.
         outputfile = open('/home/pi/Downloads/LEDController/power.txt', 'w')
 	outputfile.write(str(self.power))
-	
-'''    
-    def increase(self):
-        if(self.power < 100):
-            self.power += 5
-            print(self.power)
-            self.p.ChangeDutyCycle(self.power)
-        outputfile = open('/home/pi/Downloads/LEDController/power.txt', 'w')
-        outputfile.write(str(self.power))
-        return self.power
-
-    
-    def decrease(self):
-        if(self.power > 0):
-            self.power -= 5
-            self.p.ChangeDutyCycle(self.power)
-        outputfile = open('/home/pi/Downloads/LEDController/power.txt', 'w')
-        outputfile.write(str(self.power))
-        return self.power
-
-
-    
-    def powerOnOff(self):
-        if(self.power > 0):
-            self.p.stop()
-        else:
-            self.p.start(self.power)
-        outputfile = open('/home/pi/Downloads/LEDController/power.txt', 'w')
-        outputfile.write(str(self.power))
-        return self.power'''
-
-
-#first arg is the function to call
-function = sys.argv[1]
-
-#takes up to four additional args for multiple uses (use 0 if not using them)
-arg1 = sys.argv[2]
-arg2 = sys.argv[3]
-arg3 = sys.argv[4]
-arg4 = sys.argv[5]
-
-
-'''#access proxy motorcontroller
-proxyled = Pyro4.core.Proxy("PYRONAME:ledcontroller.server")
-
-#call the proxy to perform methods based on function
-if(function == "1"):
-    proxyled.increase()
-elif(function == "2"):
-    proxyled.decrease()
-elif(function == "3"):
-    proxyled.power()
-'''
-
-proxyled = LEDController()
-
-if(function == "1"):
-    proxyled.increase()
-elif(function == "2"):
-    proxyled.decrease()
-elif(function == "3"):
-    proxyled.powerOnOff()
-
-
-
-exit()
