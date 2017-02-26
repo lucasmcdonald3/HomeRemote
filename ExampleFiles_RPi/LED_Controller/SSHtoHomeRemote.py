@@ -1,8 +1,8 @@
 ''' This file is called from the iOS app.
-    Specifically, the app calls the statement: cd /home/Home_Remote; python SSHtoHomeRemote.py [args]
+    Specifically, the app calls the statement: cd /home/pi/Home_Remote; python SSHtoHomeRemote.py [args]
     The arguments vary for each style of remote. For this example of the LED controller, we use the one-button remote.
     As a result, we can have a very basic set of args: 1 0 0 0 0.
-    Thus the exact statement used from this remote is: cd /home/Home_Remote; python SSHtoHomeRemote.py 1 0 0 0 0'''
+    Thus the exact statement used from this remote is: cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 1 0 0 0 0'''
 
 import LEDController
 
