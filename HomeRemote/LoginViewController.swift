@@ -5,7 +5,7 @@
 //  Class that controls the view of the login screen. Creates an SSH connection then hands it to the next view controller.
 //
 //  Created by Lucas McDonald on 7/22/16.
-//  Copyright © 2016 Lucas McDonald. All rights reserved.
+//  Copyright © 2016 Lucas McDonald.
 //
 
 import UIKit
