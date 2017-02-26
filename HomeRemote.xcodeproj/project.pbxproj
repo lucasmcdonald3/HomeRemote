@@ -25,6 +25,7 @@
 		A09D71281E6244CC0019D299 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71271E6244CC0019D299 /* Device.swift */; };
 		A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */; };
 		A0A48C3F1E628AF100AB56B0 /* FirebaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */; };
+		A0B30B121E62B0F9005B0410 /* FirebaseDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B30B111E62B0F9005B0410 /* FirebaseDeviceViewController.swift */; };
 		BCEF9735F307B7EA213577E2 /* Pods_HomeRemoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 482201D0205F621B959D6053 /* Pods_HomeRemoteTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		A09D71271E6244CC0019D299 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRemoteViewController.swift; sourceTree = "<group>"; };
 		A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseNavigationViewController.swift; sourceTree = "<group>"; };
+		A0B30B111E62B0F9005B0410 /* FirebaseDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDeviceViewController.swift; sourceTree = "<group>"; };
 		E00C082AC0F603BAAA534A13 /* Pods-HomeRemote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRemote.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeRemote/Pods-HomeRemote.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 				A09D71271E6244CC0019D299 /* Device.swift */,
 				A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */,
 				A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */,
+				A0B30B111E62B0F9005B0410 /* FirebaseDeviceViewController.swift */,
 			);
 			path = HomeRemote;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
 				A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */,
+				A0B30B121E62B0F9005B0410 /* FirebaseDeviceViewController.swift in Sources */,
 				A04C1BEB1E6228590095646C /* Project.swift in Sources */,
 				A09D71281E6244CC0019D299 /* Device.swift in Sources */,
 			);

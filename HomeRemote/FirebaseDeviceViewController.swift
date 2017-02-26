@@ -1,8 +1,8 @@
 //
-//  FirebaseNavigationVIewController.swift
+//  FirebaseDeviceViewController.swift
 //  HomeRemote
 //
-//  Created by Lucas McDonald on 2/25/17.
+//  Created by Lucas McDonald on 2/26/17.
 //  Copyright © 2017 Lucas McDonald. All rights reserved.
 //
 
@@ -10,26 +10,28 @@ import Foundation
 import UIKit
 import Firebase
 
-class FirebaseNavigationViewController: UITableViewController {
+class FirebaseDeviceViewController: UITableViewController {
     
     let cellReuseIdentifier = "cell"
+    
+    var hub: String?
     var devices = [String]()
     
-    @IBOutlet var hubList: UITableView!
+    @IBOutlet var deviceList: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Register the table view cell class and its reuse id
-        self.hubList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        self.deviceList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         // This view controller itself will provide the delegate methods and row data for the table view.
-        hubList.delegate = self
-        hubList.dataSource = self
+        deviceList.delegate = self
+        deviceList.dataSource = self
         
         ////// SCRIPT ///////
         let storageRef = FIRStorage.storage().reference()
-        let ctrlListJson = storageRef.child("_controllers.json")
+        let ctrlListJson = storageRef.child(hub! + ".json")
         
         let MAX_FS = 16*1024 // tight limit for now
         
@@ -46,13 +48,13 @@ class FirebaseNavigationViewController: UITableViewController {
                 
                 // get ist of controllers
                 if let dictionary = json as? [String: Any] {
-                    if let arr = dictionary["controllers"] as? [String] {
-                        self.hubList.beginUpdates()
+                    if let arr = dictionary["devices"] as? [String] {
+                        self.deviceList.beginUpdates()
                         for i in 0...(arr.count-1) {
                             self.devices.append(arr[i])
-                            self.hubList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+                            self.deviceList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
                         }
-                        self.hubList.endUpdates()
+                        self.deviceList.endUpdates()
                     }
                 }
             }
@@ -65,7 +67,7 @@ class FirebaseNavigationViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = hubList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        let cell:UITableViewCell = deviceList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
         cell.textLabel?.text = devices[indexPath.row]
@@ -80,10 +82,9 @@ class FirebaseNavigationViewController: UITableViewController {
     
     // method to run when table view cell is tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let stepVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDeviceViewController") as! FirebaseDeviceViewController
-        stepVC.hub = self.devices[indexPath.row]
-        self.present(stepVC, animated:true, completion:nil)
+        print(indexPath.row)
+        return;
     }
     
 }
+
