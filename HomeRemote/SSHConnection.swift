@@ -5,7 +5,7 @@
 //  Class that adds a bit more utility to the NMSSH framework for the QRT controller's usage.
 //
 //  Created by Lucas McDonald on 7/23/16.
-//  Copyright © 2016 Lucas McDonald. All rights reserved.
+//  Copyright © 2016 Lucas McDonald.
 //
 
 import Foundation
