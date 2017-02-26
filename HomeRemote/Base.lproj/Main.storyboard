@@ -172,7 +172,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXv-a3-rDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3502" y="-838"/>
+            <point key="canvasLocation" x="3502" y="-630"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bed-fV-3w6">
+            <objects>
+                <viewController id="wXw-Zf-Rwa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kBT-Nz-YCF"/>
+                        <viewControllerLayoutGuide type="bottom" id="VeD-mQ-pGU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dz6-FQ-oyh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wY5-Qz-rdl">
+                                <rect key="frame" x="96" y="274" width="184" height="108"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="Boop"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wY5-Qz-rdl" firstAttribute="centerX" secondItem="dz6-FQ-oyh" secondAttribute="centerX" id="dWA-yd-hGL"/>
+                            <constraint firstItem="wY5-Qz-rdl" firstAttribute="centerY" secondItem="dz6-FQ-oyh" secondAttribute="centerY" id="ghj-Ax-ASi"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="81K-wZ-R2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3501.5999999999999" y="126.38680659670166"/>
         </scene>
         <!--Detail-->
         <scene sceneID="yUG-lL-AsK">
@@ -312,8 +341,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="loginFromGoKeyboard:" destination="f0m-9f-Vdm" eventType="primaryActionTriggered" id="P9D-wi-fAP"/>
                                     <action selector="passwordDisappear:" destination="f0m-9f-Vdm" eventType="editingDidEnd" id="FAZ-Kc-gz3"/>
+                                    <action selector="passwordToNickname:" destination="f0m-9f-Vdm" eventType="primaryActionTriggered" id="LAz-fv-1M1"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XTl-d9-MJL">
@@ -330,8 +359,8 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="loginFromGoKeyboard:" destination="f0m-9f-Vdm" eventType="primaryActionTriggered" id="lBW-zJ-CQT"/>
-                                    <action selector="passwordDisappear:" destination="f0m-9f-Vdm" eventType="editingDidEnd" id="tDr-iU-dxc"/>
+                                    <action selector="loginFromGoKeyboard:" destination="f0m-9f-Vdm" eventType="primaryActionTriggered" id="pTT-go-Xoe"/>
+                                    <action selector="nicknameDisappear:" destination="f0m-9f-Vdm" eventType="editingDidEnd" id="wqp-HM-YXG"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s0v-My-6gV">
@@ -499,6 +528,7 @@
                     </view>
                     <connections>
                         <outlet property="ipField" destination="s0v-My-6gV" id="I2v-GJ-O90"/>
+                        <outlet property="nicknameField" destination="XTl-d9-MJL" id="0hf-Uo-GaA"/>
                         <outlet property="passwordField" destination="Ml1-mv-LUE" id="u5a-IC-ix4"/>
                         <outlet property="usernameField" destination="hjq-aF-EXk" id="Xsy-KF-thU"/>
                     </connections>
@@ -506,6 +536,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQg-TA-VWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2405.5999999999999" y="127.28635682158921"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Kow-f5-vCx">
+            <objects>
+                <viewController id="J8i-mL-BPS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zYy-d0-SG7"/>
+                        <viewControllerLayoutGuide type="bottom" id="7q4-0p-JTS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oWe-KZ-r7o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kcW-s9-m6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4361" y="-630"/>
         </scene>
     </scenes>
 </document>

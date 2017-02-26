@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 
-
 class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellReuseIdentifier = "cell"
-    var objects = [Project]()
+    var projects = [Project]()
+    var devices = [Device]()
     var objectNumber = 0
+    var session = SSHConnection.init()
     
     @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
@@ -35,22 +36,19 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         projectsList.beginUpdates()
         
         // TODO: add project from firebase
+        // insert new cell into table
         
-        //insert new cell into table
+        let newProj = Project.init(d: Device.init(u: "4u3", i: "43.43.4.3.1.4.3", p: "hunter2", n: "my device"), remote: "stepper")
         
-        objects.append(Project.init(username: "No", ip: "Mebbe", password: "hunter2", remote: "hi"))
+        projects.append(newProj)
         
         let userDefaults = UserDefaults.standard
         
-        userDefaults.set(objects, forKey:"projects")
-        
+        userDefaults.set(NSArray.init(), forKey:"projects")
         userDefaults.synchronize()
         
-        /*let indexPath = IndexPath(row: 0, section: 0)
-        projectsList.insertRows(at: [indexPath], with: .automatic)
-        projectsList.endUpdates()*/
         
-        projectsList.insertRows(at: [IndexPath(row: objects.count-1, section: 0)], with: .automatic)
+        projectsList.insertRows(at: [IndexPath(row: projects.count-1, section: 0)], with: .automatic)
         projectsList.endUpdates()
     }
     
@@ -73,14 +71,18 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let userDefaults = UserDefaults.standard
         if userDefaults.object(forKey: "projects") != nil {
-            objects = userDefaults.object(forKey: "projects") as! [Project]
+            projects = userDefaults.object(forKey: "projects") as! [Project]
+        }
+        
+        if userDefaults.object(forKey: "devices") != nil {
+            devices = userDefaults.object(forKey: "devices") as! [Device]
         }
         
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return projects.count
     }
     
     // create a cell for each table view row
@@ -90,14 +92,26 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell:UITableViewCell = projectsList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = objects[indexPath.row].connectionUsername + ": " + objects[indexPath.row].projectName
+        cell.textLabel?.text = projects[indexPath.row].device.nickname + ": " + projects[indexPath.row].projectName
         
         return cell
     }
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: GOTO remote
+        let project = projects[indexPath.row]
+        let device = project.device
+        session = SSHConnection.init(username: (device?.username)!, ip: (device?.ip)!, password: (device?.password)!, connect: true)
+        
+        if(project.remoteType == "stepper"){
+            // switch view to DataViewController
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let stepVC = storyBoard.instantiateViewController(withIdentifier: "StepperRemoteViewController") as! StepperRemoteViewController
+            
+            // give SRVC the data it needs to reinitialize the ssh connection
+            stepVC.session = self.session
+            self.present(stepVC, animated:true, completion:nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
@@ -109,7 +123,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         if editingStyle == .delete
         {
-            objects.remove(at: indexPath.row)
+            projects.remove(at: indexPath.row)
             projectsList.reloadData()
         }
     }

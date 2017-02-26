@@ -23,6 +23,7 @@
 		A0633B8D1E614D01007934B6 /* HomeRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */; };
 		A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */; };
 		A09D71281E6244CC0019D299 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71271E6244CC0019D299 /* Device.swift */; };
+		A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */; };
 		BCEF9735F307B7EA213577E2 /* Pods_HomeRemoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 482201D0205F621B959D6053 /* Pods_HomeRemoteTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		A0633B8E1E614D01007934B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRemoteViewController.swift; sourceTree = "<group>"; };
 		A09D71271E6244CC0019D299 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRemoteViewController.swift; sourceTree = "<group>"; };
 		E00C082AC0F603BAAA534A13 /* Pods-HomeRemote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRemote.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeRemote/Pods-HomeRemote.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 				A04C1BEA1E6228590095646C /* Project.swift */,
 				A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */,
 				A09D71271E6244CC0019D299 /* Device.swift */,
+				A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */,
 			);
 			path = HomeRemote;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */,
 				A0633B7A1E614D01007934B6 /* DetailViewController.swift in Sources */,
 				A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */,
+				A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */,
 				A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */,
 				A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,

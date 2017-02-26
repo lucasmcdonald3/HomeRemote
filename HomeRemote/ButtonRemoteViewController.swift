@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StepperRemoteViewController: UIViewController {
+class ButtonRemoteViewController: UIViewController {
     
     var session = SSHConnection.init()
     
@@ -32,6 +32,10 @@ class StepperRemoteViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
         let output = session.sendCommandWithResponse("cd Downloads; python2.7 SSHtoPyroController.py 3 0 0 0 0")
         remoteData.text = output
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     

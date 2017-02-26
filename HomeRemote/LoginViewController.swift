@@ -58,6 +58,12 @@ class LoginViewController: UIViewController {
         passwordField.resignFirstResponder()
     }
     
+    @IBOutlet weak var nicknameField: UITextField!
+    
+    @IBAction func nicknameDisappear(_ sender: Any) {
+        nicknameField.resignFirstResponder()
+    }
+    
     // next button between username field and ip field
     @IBAction func userToIP(_ sender: UITextField) {
         usernameField.resignFirstResponder()
@@ -68,6 +74,11 @@ class LoginViewController: UIViewController {
     @IBAction func ipToPassword(_ sender: UITextField) {
         ipField.resignFirstResponder()
         passwordField.becomeFirstResponder()
+    }
+    
+    @IBAction func passwordToNickname(_ sender: UITextField) {
+        passwordField.resignFirstResponder()
+        nicknameField.becomeFirstResponder()
     }
 
     
@@ -92,7 +103,7 @@ class LoginViewController: UIViewController {
                 // switch view to MenuViewController
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                menu.objects.append(Project.init(username: self.usernameField.text!, ip: self.ipField.text!, password: self.passwordField.text!, remote: ""))
+                menu.devices.append(Device.init(u: self.usernameField.text!, i: self.ipField.text!, p: self.passwordField.text!, n: self.nicknameField.text!))
                 
                 
 
@@ -114,7 +125,9 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {
-        _ = UIAlertController(title: "Add a Device", message: "TODO", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add a Device", message: "Add a device using its SSH username, IP, and password. You can also give the device an easy-to-remember nickname. You must be able to connect to your device to add it to your list of devices.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
