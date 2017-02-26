@@ -13,25 +13,10 @@ class ButtonRemoteViewController: UIViewController {
     
     var session = SSHConnection.init()
     
-    @IBOutlet weak var remoteTitle: UILabel!
-    @IBOutlet weak var remoteData: UILabel!
     @IBOutlet weak var remoteButton: UIButton!
-    @IBOutlet weak var minusButton: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
     
-    @IBAction func minusPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd Downloads; python2.7 SSHtoPyroController.py 1 0 0 0 0")
-        remoteData.text = output
-    }
-    
-    @IBAction func plusPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd Downloads; python2.7 SSHtoPyroController.py 2 0 0 0 0")
-        remoteData.text = output
-    }
-    
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd Downloads; python2.7 SSHtoPyroController.py 3 0 0 0 0")
-        remoteData.text = output
+    @IBAction func buttonPressed(_ sender: Any) {
+        session.sendCommand("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 1 0 0 0 0")
     }
     
     override func viewDidLoad() {
