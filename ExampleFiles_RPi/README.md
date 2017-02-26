@@ -4,8 +4,8 @@ The projects are well-documented and should provide a basic template for develop
 
 A step-by-step instruction for developers to follow in creating their own projects follows.
 
-1) Developers will need to provide your own class for interfacing with the GPIO pins. In our example, this is "LEDController.py".
-2) Developers will need to look at the list of remotes and functionalities to determine which remote they will need to use in the "SSHtoHomeRemote.py" file.
-3) Developers will need to implement the called functions from XCode to work with the functions in their app. (e.g. "SSHtoHomeRemote 3 0 0 0 0" could be used to call a series of methods to make a project function.)
+- Developers will need to provide your own class for interfacing with the GPIO pins. In our example, this is "LEDController.py".
+- Developers will need to look at the list of remotes and functionalities to determine which remote they will need to use in the "SSHtoHomeRemote.py" file.
+- Developers will need to implement the called functions from XCode to work with the functions in their app. (e.g. "SSHtoHomeRemote 3 0 0 0 0" could be used to call a series of methods to make a project function.)
 
 That's it! Take a walk through our example project (LED_Controller) to see how easy it is to implement Home Remote into your devices!
