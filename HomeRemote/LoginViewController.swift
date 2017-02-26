@@ -21,13 +21,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // call last successful login info for easier login
-        let userDefaults = UserDefaults.standard
-        if !(userDefaults.value(forKey: "userKey") == nil) {
-            usernameField.text = userDefaults.string(forKey: "userKey")
-            ipField.text = userDefaults.string(forKey: "ipKey")
-            passwordField.text = userDefaults.string(forKey: "passKey")
-            
-        }
         
         // keyboard dismisser
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.keyboardHide))
@@ -86,18 +79,20 @@ class LoginViewController: UIViewController {
     func saveDeviceInfo(){
         
         // store login info for next time
-        let userDefaults = UserDefaults.standard
-        userDefaults.setValue(usernameField.text, forKey: "userKey")
-        userDefaults.setValue(ipField.text, forKey: "ipKey")
-        userDefaults.setValue(passwordField.text, forKey: "passKey")
-        userDefaults.synchronize()
+        //let userDefaults = UserDefaults.standard
         
         // switch view to MenuViewController
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
         menu.devices.append(Device.init(u: self.usernameField.text!, i: self.ipField.text!, p: self.passwordField.text!, n: self.nicknameField.text!))
+        //userDefaults.setValue(menu.devices, forKey: "deviceKey")
+        //userDefaults.synchronize()
         
         self.present(menu, animated:true, completion:nil)
+        
+    }
+    
+    func encodeDeviceArray(){
         
     }
     
