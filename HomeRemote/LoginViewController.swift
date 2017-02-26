@@ -105,27 +105,24 @@ class LoginViewController: UIViewController {
                 let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                 menu.devices.append(Device.init(u: self.usernameField.text!, i: self.ipField.text!, p: self.passwordField.text!, n: self.nicknameField.text!))
                 
-                
-
                 self.present(menu, animated:true, completion:nil)
                 
-
             } else {
                 // case for correct login information but incorrect password
-                let alert = UIAlertController(title: "Incorrect Password", message: "Connected to the device properly, but with an incorrect password.", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Incorrect Password", message: "The password provided is wrong.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         } else {
             // case for incorrect login information
-            let alert = UIAlertController(title: "Connection Failed", message: "Failed to connect to the device. Your username/IP may be wrong or the device may be offline.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Connection Failed", message: "Failed to connect to the device. The device may be offline, or you may have mistyped the IP address or credentials.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add a Device", message: "Add a device using its SSH username, IP, and password. You can also give the device an easy-to-remember nickname. You must be able to connect to your device to add it to your list of devices.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add a Device", message: "Add a device hub using its IP address, SSH username, and password. You can also give the device hub an easy-to-remember nickname. You must be able to connect to the device hub to add it to the list.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -145,9 +142,8 @@ class LoginViewController: UIViewController {
     func keyboardHide() {
         view.endEditing(true)
     }
-    @IBAction func AndrewButton(_ sender: UIButton) {
-        // Get a reference to the storage service using the default Firebase App
-        
+    
+    @IBAction func AndrewNewButton(_ sender: UIButton) {
         // Get a reference to the storage service using the default Firebase App
         let storage = FIRStorage.storage()
         
@@ -179,4 +175,5 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
 }

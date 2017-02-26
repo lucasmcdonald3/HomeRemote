@@ -25,14 +25,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
-        if(projectsList.isEditing){
-            projectsList.setEditing(false, animated: true)
-        } else {
-            projectsList.setEditing(true, animated: true)
-        }
+        projectsList.setEditing(!projectsList.isEditing, animated: true)
     }
     
-    @IBAction func searchPressed(_ sender: UIBarButtonItem) {
+    @IBAction func addPressed(_ sender: UIBarButtonItem) {
         projectsList.beginUpdates()
         
         // TODO: add project from firebase
@@ -47,17 +43,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         userDefaults.set(NSArray.init(), forKey:"projects")
         userDefaults.synchronize()
         
-        
         projectsList.insertRows(at: [IndexPath(row: projects.count-1, section: 0)], with: .automatic)
         projectsList.endUpdates()
     }
-    
-    
-    
-    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +65,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         if userDefaults.object(forKey: "devices") != nil {
             devices = userDefaults.object(forKey: "devices") as! [Device]
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
