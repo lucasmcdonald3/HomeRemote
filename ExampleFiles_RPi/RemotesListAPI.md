@@ -6,9 +6,9 @@ One Button
 
 Stepper Remote
 - This remote provides a way to increment or decrement a value by an amount controlled by the device developer. It utilizes a plus and a minus button, as well as a third button for additional functionality.
-- Pressing the plus button calls "SSHtoHomeRemote.py 1".
-- Pressing the minus button calls "SSHtoHomeRemote.py 2".
-- Pressing the third button calls "SSHtoHomeRemote.py 3".
+- Pressing the plus button calls "SSHtoHomeRemote.py plus".
+- Pressing the minus button calls "SSHtoHomeRemote.py minus".
+- Pressing the third button calls "SSHtoHomeRemote.py function".
 - We are working to provide a class from which one can stream data input back to the iOS device to update the UILabel element in this remote. The logic is there, but we are experiencing issues with one of our Python packages.
 
 We didn't have time to implement all the remotes we wanted. Some more we would like to include follow.
