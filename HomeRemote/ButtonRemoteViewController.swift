@@ -14,7 +14,7 @@ class ButtonRemoteViewController: RemoteViewController {
     @IBOutlet weak var remoteButton: UIButton!
     
     @IBAction func buttonPressed(_ sender: Any) {
-        session.sendCommand("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 1 0 0 0 0")
+        session.sendCommand("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py")
     }
     
     override func viewDidLoad() {
