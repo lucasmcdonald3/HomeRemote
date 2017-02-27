@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-class ButtonRemoteViewController: UIViewController {
-    
-    var session = SSHConnection.init()
+class ButtonRemoteViewController: RemoteViewController {
     
     @IBOutlet weak var remoteButton: UIButton!
     

@@ -16,18 +16,18 @@ class Project {
     var projectName:String!
     var projectDescription:String!
     
-    init(d: Device, remote: String) {
+    init(d: Device, remote: String, pN: String, pD: String) {
         device = d
         remoteType = remote
         
-        projectName = ""
-        projectDescription = ""
+        projectName = pN
+        projectDescription = pD
     }
     
     // swift why
     // what is the point of the below three
     convenience init() {
-        self.init(d: Device(), remote: "")
+        self.init(d: Device(), remote: "", pN: "Project", pD: "My Project")
     }
     
     convenience init(coder decoder: NSCoder) {

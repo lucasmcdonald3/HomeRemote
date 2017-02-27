@@ -14,17 +14,19 @@ class Device {
     var ip:String
     var password:String
     var nickname:String
+    var deviceType:String
     
-    init(u: String, i: String, p: String, n: String){
+    init(u: String, i: String, p: String, n: String, d: String){
         username = u
         ip = i
         password = p
         nickname = n
+        deviceType = d
     }
     
     // what is the point of the below three methods
     convenience init() {
-        self.init(u: "", i: "", p: "", n: "")
+        self.init(u: "", i: "", p: "", n: "", d: "")
     }
     
     convenience init(coder decoder: NSCoder) {
@@ -34,6 +36,7 @@ class Device {
         
         password = decoder.decodeObject(forKey: "password") as! String
         nickname = decoder.decodeObject(forKey: "nickname") as! String
+        deviceType = decoder.decodeObject(forKey: "deviceType") as! String
     }
     
     func encodeWithCoder(coder: NSCoder) {
@@ -41,6 +44,7 @@ class Device {
         coder.encode(ip, forKey: "ip")
         coder.encode(password, forKey: "password")
         coder.encode(nickname, forKey: "nickname")
+        coder.encode(deviceType, forKey: "deviceType")
     }
     
     

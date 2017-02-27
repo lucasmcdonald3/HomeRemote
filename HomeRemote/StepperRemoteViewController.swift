@@ -9,9 +9,7 @@
 import Foundation
 import UIKit
 
-class StepperRemoteViewController: UIViewController {
-    
-    var session = SSHConnection.init()
+class StepperRemoteViewController: RemoteViewController {
     
     @IBOutlet weak var remoteTitle: UILabel!
     @IBOutlet weak var remoteData: UILabel!
@@ -32,6 +30,10 @@ class StepperRemoteViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
         let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 3 0 0 0 0")
         remoteData.text = output
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     

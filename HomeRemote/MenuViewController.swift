@@ -34,7 +34,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         // TODO: add project from firebase
         // insert new cell into table
         
-        let newProj = Project.init(d: Device.init(u: "4u3", i: "43.43.4.3.1.4.3", p: "hunter2", n: "my device"), remote: "stepper")
+        let newProj = Project.init(d: Device.init(u: "4u3", i: "43.43.4.3.1.4.3", p: "hunter2", n: "my device", d: "RPi"), remote: "stepper", pN: "my project", pD: "project description")
         
         projects.append(newProj)
         
@@ -89,23 +89,27 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let device = project.device
         session = SSHConnection.init(username: (device?.username)!, ip: (device?.ip)!, password: (device?.password)!, connect: true)
         
+        
+        // ViewController being switched to
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        var remoteVC:RemoteViewController
+        
         if(project.remoteType == "stepper"){
-            // switch view to DataViewController
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let stepVC = storyBoard.instantiateViewController(withIdentifier: "StepperRemoteViewController") as! StepperRemoteViewController
-            
-            // give SRVC the data it needs to reinitialize the ssh connection
-            stepVC.session = self.session
-            self.present(stepVC, animated:true, completion:nil)
+            remoteVC = storyBoard.instantiateViewController(withIdentifier: "StepperRemoteViewController") as! StepperRemoteViewController
         } else if(project.remoteType == "button"){
-            // switch view to DataViewController
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let buttonVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
-            
-            // give SRVC the data it needs to reinitialize the ssh connection
-            buttonVC.session = self.session
-            self.present(buttonVC, animated:true, completion:nil)
+            remoteVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
+        } else {
+            remoteVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
         }
+        
+        // give SRVC the data it needs to reinitialize the ssh connection
+        remoteVC.session = self.session
+        //self.present(stepVC, animated:true, completion:nil)
+        self.navigationController?.pushViewController(remoteVC, animated: true)
+        
+        
+        
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool

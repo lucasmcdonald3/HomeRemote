@@ -83,7 +83,7 @@ class FirebaseNavigationViewController: UITableViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let stepVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDeviceViewController") as! FirebaseDeviceViewController
         stepVC.hub = self.devices[indexPath.row]
-        self.present(stepVC, animated:true, completion:nil)
+        self.navigationController?.pushViewController(stepVC, animated: true)
     }
     
 }

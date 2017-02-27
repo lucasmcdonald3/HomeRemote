@@ -21,6 +21,7 @@
 		A0633B7F1E614D01007934B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0633B7E1E614D01007934B6 /* Assets.xcassets */; };
 		A0633B821E614D01007934B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0633B801E614D01007934B6 /* LaunchScreen.storyboard */; };
 		A0633B8D1E614D01007934B6 /* HomeRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */; };
+		A0682C7F1E63E10200C94458 /* RemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0682C7E1E63E10200C94458 /* RemoteViewController.swift */; };
 		A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */; };
 		A09D71281E6244CC0019D299 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71271E6244CC0019D299 /* Device.swift */; };
 		A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */; };
@@ -63,6 +64,7 @@
 		A0633B881E614D01007934B6 /* HomeRemoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeRemoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteTests.swift; sourceTree = "<group>"; };
 		A0633B8E1E614D01007934B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0682C7E1E63E10200C94458 /* RemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteViewController.swift; sourceTree = "<group>"; };
 		A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRemoteViewController.swift; sourceTree = "<group>"; };
 		A09D71271E6244CC0019D299 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRemoteViewController.swift; sourceTree = "<group>"; };
@@ -144,23 +146,16 @@
 		A0633B741E614D01007934B6 /* HomeRemote */ = {
 			isa = PBXGroup;
 			children = (
-				A021EA0C1E6151F200BE17BA /* LoginViewController.swift */,
-				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
+				A0682C7D1E63DF1E00C94458 /* AppLogic */,
+				A0682C7C1E63DF0300C94458 /* MenuNavigation */,
+				A0682C7B1E63DEFE00C94458 /* Remotes */,
 				A0633B751E614D01007934B6 /* AppDelegate.swift */,
-				A0633B791E614D01007934B6 /* DetailViewController.swift */,
-				A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */,
 				A021EA151E61536B00BE17BA /* HomeRemote-Bridging-Header.h */,
 				A0633B7B1E614D01007934B6 /* Main.storyboard */,
 				A0633B7E1E614D01007934B6 /* Assets.xcassets */,
 				A0633B801E614D01007934B6 /* LaunchScreen.storyboard */,
 				A0633B831E614D01007934B6 /* Info.plist */,
 				A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */,
-				A04C1BEA1E6228590095646C /* Project.swift */,
-				A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */,
-				A09D71271E6244CC0019D299 /* Device.swift */,
-				A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */,
-				A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */,
-				A0B30B111E62B0F9005B0410 /* FirebaseDeviceViewController.swift */,
 			);
 			path = HomeRemote;
 			sourceTree = "<group>";
@@ -172,6 +167,38 @@
 				A0633B8E1E614D01007934B6 /* Info.plist */,
 			);
 			path = HomeRemoteTests;
+			sourceTree = "<group>";
+		};
+		A0682C7B1E63DEFE00C94458 /* Remotes */ = {
+			isa = PBXGroup;
+			children = (
+				A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */,
+				A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */,
+				A0682C7E1E63E10200C94458 /* RemoteViewController.swift */,
+			);
+			name = Remotes;
+			sourceTree = "<group>";
+		};
+		A0682C7C1E63DF0300C94458 /* MenuNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				A021EA0C1E6151F200BE17BA /* LoginViewController.swift */,
+				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
+				A0633B791E614D01007934B6 /* DetailViewController.swift */,
+				A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */,
+				A0B30B111E62B0F9005B0410 /* FirebaseDeviceViewController.swift */,
+			);
+			name = MenuNavigation;
+			sourceTree = "<group>";
+		};
+		A0682C7D1E63DF1E00C94458 /* AppLogic */ = {
+			isa = PBXGroup;
+			children = (
+				A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */,
+				A04C1BEA1E6228590095646C /* Project.swift */,
+				A09D71271E6244CC0019D299 /* Device.swift */,
+			);
+			name = AppLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +412,7 @@
 				A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */,
 				A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */,
 				A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */,
+				A0682C7F1E63E10200C94458 /* RemoteViewController.swift in Sources */,
 				A021EA0D1E6151F200BE17BA /* LoginViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
