@@ -6,6 +6,7 @@
 //  Copyright © 2017 Lucas McDonald.
 //
 
+/*
 import UIKit
 
 class MasterViewController: UITableViewController {
@@ -98,5 +99,5 @@ class MasterViewController: UITableViewController {
     }
 
 
-}
+}*/
 

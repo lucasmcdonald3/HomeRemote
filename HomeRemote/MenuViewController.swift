@@ -40,7 +40,12 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let userDefaults = UserDefaults.standard
         
-        userDefaults.set(NSArray.init(), forKey:"projects")
+        
+        
+        // create the device object and immediately encode it
+        let encodedDeviceArray = NSKeyedArchiver.archivedData(withRootObject: projects)
+        userDefaults.setValue(encodedDeviceArray, forKey: "storedProjects")
+        
         userDefaults.synchronize()
         
         projectsList.insertRows(at: [IndexPath(row: projects.count-1, section: 0)], with: .automatic)

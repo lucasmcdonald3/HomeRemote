@@ -18,17 +18,17 @@ class StepperRemoteViewController: RemoteViewController {
     @IBOutlet weak var plusButton: UIButton!
     
     @IBAction func minusPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 1")
+        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py minus")
         remoteData.text = output
     }
     
     @IBAction func plusPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 2")
+        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py plus")
         remoteData.text = output
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py 3")
+        let output = session.sendCommandWithResponse("cd /home/pi/Home_Remote; python SSHtoHomeRemote.py function")
         remoteData.text = output
     }
     

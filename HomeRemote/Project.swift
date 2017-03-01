@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Project {
+class Project: NSObject {
     
     var device:Device!
     var remoteType:String!
@@ -17,6 +17,7 @@ class Project {
     var projectDescription:String!
     
     init(d: Device, remote: String, pN: String, pD: String) {
+        super.init()
         device = d
         remoteType = remote
         
@@ -26,7 +27,7 @@ class Project {
     
     // swift why
     // what is the point of the below three
-    convenience init() {
+    override convenience init() {
         self.init(d: Device(), remote: "", pN: "Project", pD: "My Project")
     }
     
