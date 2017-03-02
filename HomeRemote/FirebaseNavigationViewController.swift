@@ -14,6 +14,7 @@ class FirebaseNavigationViewController: UITableViewController {
     
     let cellReuseIdentifier = "cell"
     var devices = [String]()
+    var ref = FIRDatabase.database().reference(withPath: "devices")
     
     @IBOutlet var hubList: UITableView!
     
@@ -28,35 +29,7 @@ class FirebaseNavigationViewController: UITableViewController {
         hubList.dataSource = self
         
         ////// SCRIPT ///////
-        let storageRef = FIRStorage.storage().reference()
-        let ctrlListJson = storageRef.child("_controllers.json")
-        
-        let MAX_FS = 16*1024 // tight limit for now
-        
-        devices = []
-        
-        ctrlListJson.data(withMaxSize: Int64(MAX_FS)) { data, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-                print(error)
-                // pop up some sort of message
-                return;
-            } else {
-                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                
-                // get ist of controllers
-                if let dictionary = json as? [String: Any] {
-                    if let arr = dictionary["controllers"] as? [String] {
-                        self.hubList.beginUpdates()
-                        for i in 0...(arr.count-1) {
-                            self.devices.append(arr[i])
-                            self.hubList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
-                        }
-                        self.hubList.endUpdates()
-                    }
-                }
-            }
-        }
+        getFirebaseDatabase()
         
         
     }
@@ -84,6 +57,67 @@ class FirebaseNavigationViewController: UITableViewController {
         let stepVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDeviceViewController") as! FirebaseDeviceViewController
         stepVC.hub = self.devices[indexPath.row]
         self.navigationController?.pushViewController(stepVC, animated: true)
+    }
+    
+    func getFirebaseStorage() {
+        let storageRef = FIRStorage.storage().reference()
+        let ctrlListJson = storageRef.child("_controllers.json")
+        
+        let MAX_FS = 16*1024 // tight limit for now
+        
+        devices = []
+        
+        ctrlListJson.data(withMaxSize: Int64(MAX_FS)) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print(error)
+                // pop up some sort of message
+                return;
+            } else {
+                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                
+                // get list of controllers
+                if let dictionary = json as? [String: Any] {
+                    if let arr = dictionary["controllers"] as? [String] {
+                        self.hubList.beginUpdates()
+                        for i in 0...(arr.count-1) {
+                            self.devices.append(arr[i])
+                            self.hubList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+                        }
+                        self.hubList.endUpdates()
+                    }
+                }
+            }
+        }
+    }
+    
+    func getFirebaseDatabase() {
+        
+        // get the base node
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.hubList.beginUpdates()
+            
+            // keeps track of current row. to be phased out
+            var i = 0
+            
+            // loop over each child node
+            for child in snapshot.children {
+                
+                // add each child node to the list of devices
+                self.devices.append((child as! FIRDataSnapshot).key)
+                
+                // add each child node to the GUI
+                self.hubList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+                i+=1
+            }
+            
+            self.hubList.endUpdates()
+
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
     }
     
 }
