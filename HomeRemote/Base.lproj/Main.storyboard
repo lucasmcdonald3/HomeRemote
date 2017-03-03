@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--View Controller-->
+        <!--Device Menu View Controller-->
         <scene sceneID="Z5d-4D-D88">
             <objects>
-                <viewController id="XMK-gW-yn4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceMenuViewController" id="XMK-gW-yn4" customClass="DeviceMenuViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T4W-nn-9Gd"/>
                         <viewControllerLayoutGuide type="bottom" id="Rn6-e5-2Do"/>
@@ -39,19 +39,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rl9-4k-d8v">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Hr-Wg-80J">
+                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rn6-e5-2Do" firstAttribute="top" secondItem="Rl9-4k-d8v" secondAttribute="bottom" id="AAu-Ge-TiC"/>
-                            <constraint firstAttribute="trailing" secondItem="Rl9-4k-d8v" secondAttribute="trailing" id="TIZ-gB-m9E"/>
-                            <constraint firstItem="Rl9-4k-d8v" firstAttribute="top" secondItem="T4W-nn-9Gd" secondAttribute="bottom" constant="-64" id="eeS-Pa-hjM"/>
-                            <constraint firstItem="Rl9-4k-d8v" firstAttribute="leading" secondItem="fsM-Fw-wEZ" secondAttribute="leading" id="fiw-be-7Te"/>
+                            <constraint firstItem="0Hr-Wg-80J" firstAttribute="top" secondItem="T4W-nn-9Gd" secondAttribute="bottom" constant="-64" id="Ncy-EK-edW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Hr-Wg-80J" secondAttribute="trailing" id="eQs-2F-6dF"/>
+                            <constraint firstItem="Rn6-e5-2Do" firstAttribute="top" secondItem="0Hr-Wg-80J" secondAttribute="bottom" id="tfZ-Hs-AbZ"/>
+                            <constraint firstItem="0Hr-Wg-80J" firstAttribute="leading" secondItem="fsM-Fw-wEZ" secondAttribute="leadingMargin" id="uxa-kd-M5I"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="deviceList" destination="0Hr-Wg-80J" id="cWo-He-dch"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9R-gz-2UG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -422,10 +425,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSy-7m-3Kg">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="-20" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taK-Vz-vtP" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="-40" width="375" height="727"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Qm-5u-Ecq">
                                                 <rect key="frame" x="10" y="10" width="61" height="30"/>
@@ -468,14 +471,14 @@
                                     <constraint firstAttribute="bottom" secondItem="taK-Vz-vtP" secondAttribute="bottom" id="E2d-EC-4OL"/>
                                     <constraint firstItem="taK-Vz-vtP" firstAttribute="centerX" secondItem="PSy-7m-3Kg" secondAttribute="centerX" id="WtA-Bp-wdM"/>
                                     <constraint firstItem="taK-Vz-vtP" firstAttribute="centerY" secondItem="PSy-7m-3Kg" secondAttribute="centerY" id="WuJ-FU-3go"/>
-                                    <constraint firstItem="taK-Vz-vtP" firstAttribute="top" secondItem="PSy-7m-3Kg" secondAttribute="top" constant="-40" id="ckY-ZW-FG8"/>
+                                    <constraint firstItem="taK-Vz-vtP" firstAttribute="top" secondItem="PSy-7m-3Kg" secondAttribute="top" id="ckY-ZW-FG8"/>
                                     <constraint firstItem="taK-Vz-vtP" firstAttribute="leading" secondItem="PSy-7m-3Kg" secondAttribute="leading" id="zwk-yD-QQh"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PSy-7m-3Kg" firstAttribute="top" secondItem="lQ2-iy-H5u" secondAttribute="bottom" id="MH0-aJ-O2j"/>
+                            <constraint firstItem="PSy-7m-3Kg" firstAttribute="top" secondItem="lQ2-iy-H5u" secondAttribute="bottom" constant="-40" id="MH0-aJ-O2j"/>
                             <constraint firstAttribute="trailing" secondItem="PSy-7m-3Kg" secondAttribute="trailing" id="Pp0-tl-ey8"/>
                             <constraint firstItem="taK-Vz-vtP" firstAttribute="width" secondItem="sTl-w0-fKh" secondAttribute="width" id="gA7-qg-f1X"/>
                             <constraint firstItem="PSy-7m-3Kg" firstAttribute="leading" secondItem="sTl-w0-fKh" secondAttribute="leading" id="mFq-je-RXr"/>

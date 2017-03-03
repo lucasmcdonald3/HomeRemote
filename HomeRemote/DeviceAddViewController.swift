@@ -84,13 +84,19 @@ class DeviceAddViewController: UIViewController {
         
         // switch view to MenuViewController
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let menu = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        let menu = storyBoard.instantiateViewController(withIdentifier: "ProjectMenuViewController") as! ProjectMenuViewController
         
         
         self.navigationController?.pushViewController(menu, animated: true)
         
     }
     
+    // TODO: encode device. maybe put in device class' methods?
+    func encodeDevice() {
+        
+    }
+    
+    // TODO: encode array of devices
     func encodeDeviceArray(){
         
     }
