@@ -15,6 +15,7 @@
 		A04C1BE71E6223EC0095646C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */; };
 		A04C1BEB1E6228590095646C /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BEA1E6228590095646C /* Project.swift */; };
 		A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */; };
+		A05AD4801E69378800A8FD44 /* ProjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD47F1E69378800A8FD44 /* ProjectAddViewController.swift */; };
 		A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B751E614D01007934B6 /* AppDelegate.swift */; };
 		A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B771E614D01007934B6 /* MasterViewController.swift */; };
 		A0633B7D1E614D01007934B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0633B7B1E614D01007934B6 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A04C1BEA1E6228590095646C /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataViewController.swift; sourceTree = "<group>"; };
+		A05AD47F1E69378800A8FD44 /* ProjectAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAddViewController.swift; sourceTree = "<group>"; };
 		A0633B721E614D01007934B6 /* HomeRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0633B751E614D01007934B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0633B771E614D01007934B6 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = HomeRemote/MasterViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
 				A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */,
 				A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */,
+				A05AD47F1E69378800A8FD44 /* ProjectAddViewController.swift */,
 			);
 			name = MenuNavigation;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
+				A05AD4801E69378800A8FD44 /* ProjectAddViewController.swift in Sources */,
 				A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */,
 				A04C1BEB1E6228590095646C /* Project.swift in Sources */,
 				A09D71281E6244CC0019D299 /* Device.swift in Sources */,
