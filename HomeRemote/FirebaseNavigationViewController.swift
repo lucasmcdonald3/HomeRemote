@@ -74,12 +74,15 @@ class FirebaseNavigationViewController: UITableViewController {
         }
         
         else {
-            print("no children found")
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController
+            detailVC.prefRef = self.tableViewData[indexPath.row]
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
         
     }
     
-    // called to get the base node from firebase
+    // called to get the node's data from firebase
     func getFirebaseDatabase() {
         
         // get the base node

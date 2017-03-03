@@ -12,7 +12,7 @@ import UIKit
 import Foundation
 import Firebase
 
-class LoginViewController: UIViewController {
+class DeviceAddViewController: UIViewController {
     
     // dummy variable for class scopae
     var session = SSHConnection.init()
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         // call last successful login info for easier login
         
         // keyboard dismisser
-        let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.keyboardHide))
+        let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DeviceAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
     }
         

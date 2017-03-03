@@ -82,7 +82,7 @@ class DataViewController: UIViewController {
         raDecTabButton()
         
         // keyboard dismisser
-        let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.keyboardHide))
+        let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DeviceAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
         
         //update data every second
