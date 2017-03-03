@@ -11,7 +11,7 @@
 		A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */; };
 		A021EA0D1E6151F200BE17BA /* DeviceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */; };
 		A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0E1E61520200BE17BA /* DataViewController.swift */; };
-		A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BE41E61FD460095646C /* MenuViewController.swift */; };
+		A04C1BE51E61FD460095646C /* ProjectMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BE41E61FD460095646C /* ProjectMenuViewController.swift */; };
 		A04C1BE71E6223EC0095646C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */; };
 		A04C1BEB1E6228590095646C /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04C1BEA1E6228590095646C /* Project.swift */; };
 		A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */; };
@@ -23,6 +23,7 @@
 		A0633B821E614D01007934B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0633B801E614D01007934B6 /* LaunchScreen.storyboard */; };
 		A0633B8D1E614D01007934B6 /* HomeRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */; };
 		A0682C7F1E63E10200C94458 /* RemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0682C7E1E63E10200C94458 /* RemoteViewController.swift */; };
+		A08FCC491E69A4F5000B1027 /* DeviceMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08FCC481E69A4F5000B1027 /* DeviceMenuViewController.swift */; };
 		A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */; };
 		A09D71281E6244CC0019D299 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71271E6244CC0019D299 /* Device.swift */; };
 		A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */; };
@@ -50,7 +51,7 @@
 		A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAddViewController.swift; sourceTree = "<group>"; };
 		A021EA0E1E61520200BE17BA /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = HomeRemote/DataViewController.swift; sourceTree = "<group>"; };
 		A021EA151E61536B00BE17BA /* HomeRemote-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeRemote-Bridging-Header.h"; sourceTree = "<group>"; };
-		A04C1BE41E61FD460095646C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A04C1BE41E61FD460095646C /* ProjectMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMenuViewController.swift; sourceTree = "<group>"; };
 		A04C1BE61E6223EC0095646C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A04C1BEA1E6228590095646C /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		A0633B8C1E614D01007934B6 /* HomeRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteTests.swift; sourceTree = "<group>"; };
 		A0633B8E1E614D01007934B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0682C7E1E63E10200C94458 /* RemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteViewController.swift; sourceTree = "<group>"; };
+		A08FCC481E69A4F5000B1027 /* DeviceMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMenuViewController.swift; sourceTree = "<group>"; };
 		A09D71251E62315B0019D299 /* StepperRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepperRemoteViewController.swift; sourceTree = "<group>"; };
 		A09D71271E6244CC0019D299 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		A09D71291E62712C0019D299 /* ButtonRemoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRemoteViewController.swift; sourceTree = "<group>"; };
@@ -184,10 +186,11 @@
 			isa = PBXGroup;
 			children = (
 				A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */,
-				A04C1BE41E61FD460095646C /* MenuViewController.swift */,
+				A04C1BE41E61FD460095646C /* ProjectMenuViewController.swift */,
 				A0A48C3E1E628AF100AB56B0 /* FirebaseNavigationViewController.swift */,
 				A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */,
 				A05AD47F1E69378800A8FD44 /* ProjectAddViewController.swift */,
+				A08FCC481E69A4F5000B1027 /* DeviceMenuViewController.swift */,
 			);
 			name = MenuNavigation;
 			sourceTree = "<group>";
@@ -418,8 +421,9 @@
 				A0A48C3F1E628AF100AB56B0 /* FirebaseNavigationViewController.swift in Sources */,
 				A0633B781E614D01007934B6 /* MasterViewController.swift in Sources */,
 				A09D712A1E62712C0019D299 /* ButtonRemoteViewController.swift in Sources */,
-				A04C1BE51E61FD460095646C /* MenuViewController.swift in Sources */,
+				A04C1BE51E61FD460095646C /* ProjectMenuViewController.swift in Sources */,
 				A0682C7F1E63E10200C94458 /* RemoteViewController.swift in Sources */,
+				A08FCC491E69A4F5000B1027 /* DeviceMenuViewController.swift in Sources */,
 				A021EA0D1E6151F200BE17BA /* DeviceAddViewController.swift in Sources */,
 				A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,

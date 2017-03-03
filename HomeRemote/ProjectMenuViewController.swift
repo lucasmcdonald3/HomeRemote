@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellReuseIdentifier = "cell"
     var projects = [Project]()
@@ -26,30 +26,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         projectsList.setEditing(!projectsList.isEditing, animated: true)
-    }
-    
-    @IBAction func addPressed(_ sender: UIBarButtonItem) {
-        projectsList.beginUpdates()
-        
-        // TODO: add project from firebase
-        // insert new cell into table
-        
-        let newProj = Project.init(d: Device.init(u: "4u3", i: "43.43.4.3.1.4.3", p: "hunter2", n: "my device", d: "RPi"), remote: "stepper", pN: "my project", pD: "project description")
-        
-        projects.append(newProj)
-        
-        let userDefaults = UserDefaults.standard
-        
-        
-        
-        // create the device object and immediately encode it
-        let encodedDeviceArray = NSKeyedArchiver.archivedData(withRootObject: projects)
-        userDefaults.setValue(encodedDeviceArray, forKey: "storedProjects")
-        
-        userDefaults.synchronize()
-        
-        projectsList.insertRows(at: [IndexPath(row: projects.count-1, section: 0)], with: .automatic)
-        projectsList.endUpdates()
     }
     
     override func viewDidLoad() {
