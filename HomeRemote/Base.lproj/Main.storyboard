@@ -363,7 +363,7 @@
         <!--Find Device Hub-->
         <scene sceneID="Hmy-97-YQq">
             <objects>
-                <tableViewController id="Lkl-yd-9Sk" customClass="FirebaseNavigationViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FirebaseNavigationViewController" id="Lkl-yd-9Sk" customClass="FirebaseNavigationViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="P5k-j5-wat">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -371,29 +371,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Find Device Hub" id="mXT-pb-rcS"/>
                     <connections>
-                        <outlet property="hubList" destination="P5k-j5-wat" id="h8A-pX-1tR"/>
+                        <outlet property="tableViewList" destination="P5k-j5-wat" id="MIw-QJ-awp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCL-cg-Hgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3295" y="-630"/>
-        </scene>
-        <!--Firebase Device View Controller-->
-        <scene sceneID="Qdl-Bq-QoR">
-            <objects>
-                <tableViewController storyboardIdentifier="FirebaseDeviceViewController" id="S3x-ix-Db5" customClass="FirebaseDeviceViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MFM-QB-Zie">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </tableView>
-                    <connections>
-                        <outlet property="deviceList" destination="MFM-QB-Zie" id="13P-07-q2b"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I7K-uO-ITc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4154" y="-638"/>
         </scene>
     </scenes>
 </document>
