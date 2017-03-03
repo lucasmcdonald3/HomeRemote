@@ -16,11 +16,14 @@ class FirebaseNavigationViewController: UITableViewController {
     var tableViewData = [String]()
     var ref = FIRDatabase.database().reference().child("devices")
     var prevRef = ""
+    var nodeDepth = 0
     
     @IBOutlet var tableViewList: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // Register the table view cell class and its reuse id
         self.tableViewList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
@@ -60,10 +63,20 @@ class FirebaseNavigationViewController: UITableViewController {
     
     // method to run when table view cell is tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseNavigationViewController") as! FirebaseNavigationViewController
-        nextVC.prevRef = self.tableViewData[indexPath.row]
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        //if this is a navigational node, i.e. not a link to the GitHub files
+        if(self.nodeDepth < 1) {
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseNavigationViewController") as! FirebaseNavigationViewController
+            nextVC.prevRef = self.tableViewData[indexPath.row]
+            nextVC.nodeDepth = self.nodeDepth + 1
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+        
+        else {
+            print("no children found")
+        }
+        
     }
     
     // called to get the base node from firebase
