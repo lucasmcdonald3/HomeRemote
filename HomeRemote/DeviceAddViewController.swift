@@ -87,6 +87,9 @@ class DeviceAddViewController: UIViewController {
         let menu = storyBoard.instantiateViewController(withIdentifier: "ProjectMenuViewController") as! ProjectMenuViewController
         
         
+        
+        
+        
         self.navigationController?.pushViewController(menu, animated: true)
         
     }

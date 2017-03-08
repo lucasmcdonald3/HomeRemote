@@ -40,15 +40,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Hr-Wg-80J">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="16" y="0.0" width="343" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LQ-CC-2Gh">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Add New Device" id="5jc-eQ-H3u">
+                                        <connections>
+                                            <segue destination="f0m-9f-Vdm" kind="show" id="FuJ-1j-K0I"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7LQ-CC-2Gh" firstAttribute="leading" secondItem="fsM-Fw-wEZ" secondAttribute="leading" id="29V-TU-slM"/>
+                            <constraint firstItem="7LQ-CC-2Gh" firstAttribute="top" secondItem="0Hr-Wg-80J" secondAttribute="bottom" id="7wT-GU-FTS"/>
                             <constraint firstItem="0Hr-Wg-80J" firstAttribute="top" secondItem="T4W-nn-9Gd" secondAttribute="bottom" constant="-64" id="Ncy-EK-edW"/>
+                            <constraint firstAttribute="trailing" secondItem="7LQ-CC-2Gh" secondAttribute="trailing" id="Q7e-HW-9Aa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Hr-Wg-80J" secondAttribute="trailing" id="eQs-2F-6dF"/>
-                            <constraint firstItem="Rn6-e5-2Do" firstAttribute="top" secondItem="0Hr-Wg-80J" secondAttribute="bottom" id="tfZ-Hs-AbZ"/>
+                            <constraint firstItem="Rn6-e5-2Do" firstAttribute="top" secondItem="7LQ-CC-2Gh" secondAttribute="bottom" id="lvz-N3-TJh"/>
                             <constraint firstItem="0Hr-Wg-80J" firstAttribute="leading" secondItem="fsM-Fw-wEZ" secondAttribute="leadingMargin" id="uxa-kd-M5I"/>
                         </constraints>
                     </view>
@@ -58,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9R-gz-2UG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1655" y="22"/>
+            <point key="canvasLocation" x="1653.5999999999999" y="21.139430284857571"/>
         </scene>
         <!--All Projects-->
         <scene sceneID="AZF-RI-iVj">
@@ -259,9 +272,9 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856" y="-330"/>
+            <point key="canvasLocation" x="-958" y="-630"/>
         </scene>
-        <!--Add Hub-->
+        <!--Add Device-->
         <scene sceneID="CFF-gN-whM">
             <objects>
                 <viewController storyboardIdentifier="DeviceAddViewController" id="f0m-9f-Vdm" customClass="DeviceAddViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
@@ -382,7 +395,7 @@
                             <constraint firstItem="s0v-My-6gV" firstAttribute="centerY" secondItem="haF-dc-YXf" secondAttribute="centerY" id="zUA-iS-bq7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Hub" id="KYW-id-rd2"/>
+                    <navigationItem key="navigationItem" title="Add Device" id="KYW-id-rd2"/>
                     <connections>
                         <outlet property="ipField" destination="s0v-My-6gV" id="I2v-GJ-O90"/>
                         <outlet property="nicknameField" destination="XTl-d9-MJL" id="0hf-Uo-GaA"/>
