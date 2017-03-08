@@ -524,7 +524,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GitHub Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iK2-wy-7Pr">
-                                <rect key="frame" x="16" y="84" width="90" height="21"/>
+                                <rect key="frame" x="16" y="89" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -547,36 +547,36 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ugz-MO-05P">
-                                <rect key="frame" x="121" y="79.5" width="238" height="30"/>
+                                <rect key="frame" x="121" y="84.5" width="238" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXZ-3F-vEK">
-                                <rect key="frame" x="310" y="120" width="51" height="31"/>
+                                <rect key="frame" x="310" y="135" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchTriggered:" destination="155-y5-rcK" eventType="valueChanged" id="xHc-b0-Xet"/>
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSH-Eu-2Rc">
-                                <rect key="frame" x="268" y="125" width="22" height="22"/>
+                                <rect key="frame" x="268" y="140" width="22" height="22"/>
                                 <connections>
                                     <action selector="publicInfoButtonPressed:" destination="155-y5-rcK" eventType="touchUpInside" id="NLd-oQ-iMb"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make Project Public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6R-Tj-Pbz">
-                                <rect key="frame" x="16" y="125" width="151" height="21"/>
+                                <rect key="frame" x="16" y="140" width="151" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEF-Y1-Ukt">
-                                <rect key="frame" x="16" y="166" width="107" height="21"/>
+                                <rect key="frame" x="16" y="191" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-Ph-lcg">
-                                <rect key="frame" x="138" y="161" width="221" height="30"/>
+                                <rect key="frame" x="138" y="186" width="221" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
@@ -591,8 +591,8 @@
                             <constraint firstItem="ugz-MO-05P" firstAttribute="centerY" secondItem="iK2-wy-7Pr" secondAttribute="centerY" id="Gkh-DG-gqX"/>
                             <constraint firstItem="4dc-Ph-lcg" firstAttribute="leading" secondItem="yEF-Y1-Ukt" secondAttribute="trailing" constant="15" id="O8t-Cy-xjf"/>
                             <constraint firstItem="UXZ-3F-vEK" firstAttribute="leading" secondItem="dSH-Eu-2Rc" secondAttribute="trailing" constant="20" id="OAD-Cz-UJc"/>
-                            <constraint firstItem="R6R-Tj-Pbz" firstAttribute="top" secondItem="iK2-wy-7Pr" secondAttribute="bottom" constant="20" id="OqJ-JW-Xfc"/>
-                            <constraint firstItem="yEF-Y1-Ukt" firstAttribute="top" secondItem="R6R-Tj-Pbz" secondAttribute="bottom" constant="20" id="URI-EK-XEr"/>
+                            <constraint firstItem="R6R-Tj-Pbz" firstAttribute="top" secondItem="iK2-wy-7Pr" secondAttribute="bottom" constant="30" id="OqJ-JW-Xfc"/>
+                            <constraint firstItem="yEF-Y1-Ukt" firstAttribute="top" secondItem="R6R-Tj-Pbz" secondAttribute="bottom" constant="30" id="URI-EK-XEr"/>
                             <constraint firstItem="zGe-dq-Q0f" firstAttribute="centerY" secondItem="7oF-pH-4Ka" secondAttribute="centerY" id="ZUh-R0-5cZ"/>
                             <constraint firstItem="dSH-Eu-2Rc" firstAttribute="centerY" secondItem="R6R-Tj-Pbz" secondAttribute="centerY" id="ZY5-jj-4r4"/>
                             <constraint firstItem="10R-Jm-Hlb" firstAttribute="top" secondItem="Oii-6b-o3D" secondAttribute="bottom" constant="15" id="f6O-lk-1Pt"/>
@@ -601,7 +601,7 @@
                             <constraint firstItem="4dc-Ph-lcg" firstAttribute="centerY" secondItem="yEF-Y1-Ukt" secondAttribute="centerY" id="m7D-VF-gag"/>
                             <constraint firstItem="Oii-6b-o3D" firstAttribute="trailing" secondItem="7oF-pH-4Ka" secondAttribute="trailingMargin" id="mQd-4H-M4t"/>
                             <constraint firstItem="ugz-MO-05P" firstAttribute="leading" secondItem="iK2-wy-7Pr" secondAttribute="trailing" constant="15" id="tSn-cP-tZU"/>
-                            <constraint firstItem="iK2-wy-7Pr" firstAttribute="top" secondItem="Sen-nD-mSa" secondAttribute="bottom" constant="20" id="um6-E8-8V8"/>
+                            <constraint firstItem="iK2-wy-7Pr" firstAttribute="top" secondItem="Sen-nD-mSa" secondAttribute="bottom" constant="25" id="um6-E8-8V8"/>
                             <constraint firstItem="yEF-Y1-Ukt" firstAttribute="leading" secondItem="7oF-pH-4Ka" secondAttribute="leadingMargin" id="yRc-TC-cjA"/>
                         </constraints>
                     </view>
