@@ -58,13 +58,13 @@ class DeviceAddViewController: UIViewController {
     }
     
     // next button between username field and ip field
-    @IBAction func userToIP(_ sender: UITextField) {
+    @IBAction func userToPassword(_ sender: UITextField) {
         usernameField.resignFirstResponder()
         ipField.becomeFirstResponder()
     }
     
     // next button between ip field and password field
-    @IBAction func ipToPassword(_ sender: UITextField) {
+    @IBAction func ipToUser(_ sender: UITextField) {
         ipField.resignFirstResponder()
         passwordField.becomeFirstResponder()
     }
