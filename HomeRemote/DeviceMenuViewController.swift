@@ -44,7 +44,6 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func retrieveDeviceList() {
         
-        //
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
         

@@ -42,31 +42,34 @@ class DeviceAddViewController: UIViewController {
      
      Saves the device info into NSUserDefaults and pushes the ProjectMenuViewController.
      
-    */
+     */
     func saveDeviceInfo(){
         
-        // call up the PMVC
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
-        
-        // store information of new device
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
-        device.deviceType = "RPi3"
-        device.ip = ipField.text
-        device.username = usernameField.text
-        device.password = passwordField.text
-        device.nickname = nicknameField.text
-        
-        do {
-            try context.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
+        if(ipField.text == "" || usernameField.text == "" || passwordField.text == "" || nicknameField.text == "") {
+            let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        } else {
+            
+            // store information of new device
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
+            device.deviceType = "RPi3"
+            device.ip = ipField.text
+            device.username = usernameField.text
+            device.password = passwordField.text
+            device.nickname = nicknameField.text
+            
+            do {
+                try context.save()
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
+            
+            // show new view controller
+            _ = self.navigationController?.popToRootViewController(animated: true)
         }
-        
-        // show new view controller
-        self.navigationController?.pushViewController(nextVC, animated: true)
-        
     }
     
     
