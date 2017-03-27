@@ -27,6 +27,119 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
+        <!--Device Info View Controller-->
+        <scene sceneID="dev-Xy-ZPQ">
+            <objects>
+                <viewController storyboardIdentifier="DeviceInfoViewController" id="uzx-5t-2mU" customClass="DeviceInfoViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IaY-rx-Vc4"/>
+                        <viewControllerLayoutGuide type="bottom" id="TCW-uX-w5z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BVu-ms-Yr9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBN-gs-YiI">
+                                <rect key="frame" x="16" y="90" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GI2-PV-Jcb">
+                                <rect key="frame" x="317" y="90" width="42" height="21"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IP Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVL-L5-pD9">
+                                <rect key="frame" x="16" y="126" width="82" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1P-5Z-DzD">
+                                <rect key="frame" x="317" y="126" width="42" height="21"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qZ-Lf-xAF">
+                                <rect key="frame" x="166" y="20" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLE-xB-qfe">
+                                <rect key="frame" x="16" y="162" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIB-NH-0Eg">
+                                <rect key="frame" x="317" y="162" width="42" height="21"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXp-fM-Zxq">
+                                <rect key="frame" x="16" y="198" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6x-Hb-nRZ">
+                                <rect key="frame" x="317" y="198" width="42" height="21"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W1P-5Z-DzD" firstAttribute="centerY" secondItem="LVL-L5-pD9" secondAttribute="centerY" id="0qW-IT-2fp"/>
+                            <constraint firstItem="jXp-fM-Zxq" firstAttribute="leading" secondItem="BVu-ms-Yr9" secondAttribute="leadingMargin" id="3Fi-DK-kRn"/>
+                            <constraint firstItem="W1P-5Z-DzD" firstAttribute="trailing" secondItem="BVu-ms-Yr9" secondAttribute="trailingMargin" id="3Yu-vf-MfP"/>
+                            <constraint firstItem="LVL-L5-pD9" firstAttribute="leading" secondItem="BVu-ms-Yr9" secondAttribute="leadingMargin" id="4Ku-9T-eLV"/>
+                            <constraint firstItem="zLE-xB-qfe" firstAttribute="leading" secondItem="BVu-ms-Yr9" secondAttribute="leadingMargin" id="5tS-Xg-9SO"/>
+                            <constraint firstItem="LBN-gs-YiI" firstAttribute="leading" secondItem="BVu-ms-Yr9" secondAttribute="leadingMargin" id="82e-N0-3rm"/>
+                            <constraint firstItem="eIB-NH-0Eg" firstAttribute="centerY" secondItem="zLE-xB-qfe" secondAttribute="centerY" id="EI4-b1-IH0"/>
+                            <constraint firstItem="LBN-gs-YiI" firstAttribute="top" secondItem="IaY-rx-Vc4" secondAttribute="bottom" constant="70" id="Je6-My-8Za"/>
+                            <constraint firstItem="jXp-fM-Zxq" firstAttribute="top" secondItem="zLE-xB-qfe" secondAttribute="bottom" constant="15" id="OPL-Te-cnR"/>
+                            <constraint firstItem="6qZ-Lf-xAF" firstAttribute="top" secondItem="IaY-rx-Vc4" secondAttribute="bottom" id="ZtZ-90-R6F"/>
+                            <constraint firstItem="6qZ-Lf-xAF" firstAttribute="centerX" secondItem="BVu-ms-Yr9" secondAttribute="centerX" id="eJ1-87-SeH"/>
+                            <constraint firstItem="GI2-PV-Jcb" firstAttribute="centerY" secondItem="LBN-gs-YiI" secondAttribute="centerY" id="mqN-Sr-MFt"/>
+                            <constraint firstItem="zLE-xB-qfe" firstAttribute="top" secondItem="LVL-L5-pD9" secondAttribute="bottom" constant="15" id="nR3-91-Z7Q"/>
+                            <constraint firstItem="LVL-L5-pD9" firstAttribute="top" secondItem="LBN-gs-YiI" secondAttribute="bottom" constant="15" id="pJ6-Nh-pWD"/>
+                            <constraint firstItem="GI2-PV-Jcb" firstAttribute="trailing" secondItem="BVu-ms-Yr9" secondAttribute="trailingMargin" id="pMj-Dv-Err"/>
+                            <constraint firstItem="eIB-NH-0Eg" firstAttribute="trailing" secondItem="BVu-ms-Yr9" secondAttribute="trailingMargin" id="qLh-Sa-XH1"/>
+                            <constraint firstItem="b6x-Hb-nRZ" firstAttribute="centerY" secondItem="jXp-fM-Zxq" secondAttribute="centerY" id="raU-ZA-213"/>
+                            <constraint firstItem="b6x-Hb-nRZ" firstAttribute="trailing" secondItem="BVu-ms-Yr9" secondAttribute="trailingMargin" id="wMi-sh-Mma"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="centeredNickname" destination="6qZ-Lf-xAF" id="e2Q-fQ-oZP"/>
+                        <outlet property="ipField" destination="W1P-5Z-DzD" id="nnL-PU-F0e"/>
+                        <outlet property="nicknameField" destination="b6x-Hb-nRZ" id="HJ8-Dv-jS9"/>
+                        <outlet property="passwordField" destination="eIB-NH-0Eg" id="bQd-W5-5MP"/>
+                        <outlet property="usernameField" destination="GI2-PV-Jcb" id="mRv-NX-T7n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gwk-Gd-DXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1334" y="143"/>
+        </scene>
         <!--Device Menu View Controller-->
         <scene sceneID="Z5d-4D-D88">
             <objects>

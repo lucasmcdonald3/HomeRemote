@@ -86,7 +86,11 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // TODO: Display information about device. IP, username, projects used in
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceInfoViewController") as! DeviceInfoViewController
+        print("nickname:" + self.devices[indexPath.row].nickname!)
+        nextVC.centeredNickname.text = self.devices[indexPath.row].nickname
+        self.navigationController?.pushViewController(nextVC, animated: true)
         
         
     }
