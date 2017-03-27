@@ -25,12 +25,46 @@ class DeviceAddViewController: UIViewController {
         // keyboard dismisser
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DeviceAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
+        
+        
     }
         
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+
+    
+    /**
+     
+     Saves the device info into NSUserDefaults and pushes the ProjectMenuViewController.
+     
+    */
+    func saveDeviceInfo(){
+        
+        // call up the PMVC
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
+        
+        // store information of new device
+        let userDefaults = UserDefaults.standard
+        var devicesArray = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: "deviceList")!) as! [Device]
+        let newDevice = Device(u: usernameField.text!, i: ipField.text!, p: passwordField.text!, n: nicknameField.text!, d: "RPi3")
+        devicesArray.append(newDevice)
+        userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: devicesArray), forKey: "deviceList")
+        userDefaults.synchronize()
+        
+        // show new view controller
+        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+    }
+    
+    
+    /*
+            UI methods and fields follow.
+                                                */
     
     @IBOutlet weak var usernameField: UITextField!
     
@@ -75,48 +109,12 @@ class DeviceAddViewController: UIViewController {
     }
 
     
-    // called when the user attempts to login with the entered information
-    func saveDeviceInfo(){
-        
-        // store login info for next time
-        
-        //let userDefaults = UserDefaults.standard
-        
-        // switch view to MenuViewController
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let menu = storyBoard.instantiateViewController(withIdentifier: "ProjectMenuViewController") as! ProjectMenuViewController
-        
-        
-        
-        
-        
-        self.navigationController?.pushViewController(menu, animated: true)
-        
-    }
-    
-    // TODO: encode device. maybe put in device class' methods?
-    func encodeDevice() {
-        
-    }
-    
-    // TODO: encode array of devices
-    func encodeDeviceArray(){
-        
-    }
-    
-    @IBAction func infoPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add a Device", message: "Add a device hub using its IP address, SSH username, and password. You can also give the device hub an easy-to-remember nickname. You must be able to connect to the device hub to add it to the list.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
     // called from passwordfield's go button
     @IBAction func loginFromGoKeyboard(_ sender: AnyObject) {
         saveDeviceInfo()
     }
 
-    // called from the login button on the screen
+    // called from the add button on the screen
     @IBAction func loginButton(_ sender: UIButton) {
         saveDeviceInfo()
     }
@@ -126,37 +124,5 @@ class DeviceAddViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func AndrewNewButton(_ sender: UIButton) {
-        // Get a reference to the storage service using the default Firebase App
-        let storage = FIRStorage.storage()
-        
-        // Create a storage reference from our storage service
-        let storageRef = storage.reference()
-        
-        let ctrlJson = storageRef.child("_controllers.json")
-        
-        let ONE_MiB = 1024*1024 // will any
-        
-        var controllers: [Any]
-        controllers = []
-        
-        ctrlJson.data(withMaxSize: Int64(ONE_MiB)) { data, error in
-            if let error = error {
-                // Uh-oh, an error occurred!
-                print(error)
-                // pop up some sort of message
-                return;
-            } else {
-                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                
-                if let dictionary = json as? [String: Any] {
-                    if let arr = dictionary["controllers"] as? [String] {
-                        controllers = arr
-                        print(controllers)
-                    }
-                }
-            }
-        }
-    }
     
 }

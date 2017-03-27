@@ -14,7 +14,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var deviceList: UITableView!
     
-    
+    var tableViewData = [String]()
     let cellReuseIdentifier = "cell"
     var projects = [Project]()
     var devices = [Device]()
@@ -36,14 +36,31 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         deviceList.delegate = self
         deviceList.dataSource = self
         
-        let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "projects") != nil {
-            projects = userDefaults.object(forKey: "projects") as! [Project]
-        }
+        retrieveDeviceList()
         
-        if userDefaults.object(forKey: "devices") != nil {
-            devices = userDefaults.object(forKey: "devices") as! [Device]
+        populateDeviceView()
+        
+    }
+    
+    func retrieveDeviceList() {
+        print("retrieve called")
+        let userDefaults = UserDefaults.standard
+        if let deviceData = userDefaults.object(forKey: "deviceList") as? Data {
+            devices = NSKeyedUnarchiver.unarchiveObject(with: deviceData) as! [Device]
         }
+    }
+    
+    func populateDeviceView() {
+        print("populate called")
+        self.deviceList.beginUpdates()
+        var i = 0
+        for device in devices {
+            print(device.nickname)
+            self.tableViewData.append(device.nickname)
+            self.deviceList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+            i += 1
+        }
+        self.deviceList.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +74,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell:UITableViewCell = deviceList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = devices[indexPath.row].nickname
+        cell.textLabel?.text = tableViewData[indexPath.row]
         
         return cell
     }

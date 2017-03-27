@@ -21,9 +21,9 @@ class FirebaseNavigationViewController: UITableViewController {
     @IBOutlet var tableViewList: UITableView!
     
     override func viewDidLoad() {
+        
+        // load table view stuff
         super.viewDidLoad()
-        
-        
         
         // Register the table view cell class and its reuse id
         self.tableViewList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
@@ -37,9 +37,9 @@ class FirebaseNavigationViewController: UITableViewController {
             ref = FIRDatabase.database().reference().child("devices").child(prevRef)
         }
         
-        ////// SCRIPT ///////
+        // populate table view with data from Firebase
         getFirebaseDatabase()
-        
+
         
     }
     
@@ -73,6 +73,7 @@ class FirebaseNavigationViewController: UITableViewController {
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
         
+        // if this is NOT a navigational node, i.e. links to a GitHub file
         else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController

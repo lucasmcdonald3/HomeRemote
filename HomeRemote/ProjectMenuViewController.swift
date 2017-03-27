@@ -39,12 +39,8 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         projectsList.dataSource = self
         
         let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "projects") != nil {
-            projects = userDefaults.object(forKey: "projects") as! [Project]
-        }
-        
-        if userDefaults.object(forKey: "devices") != nil {
-            devices = userDefaults.object(forKey: "devices") as! [Device]
+        if userDefaults.object(forKey: "projectList") != nil {
+            projects = userDefaults.object(forKey: "projectList") as! [Project]
         }
     }
     
