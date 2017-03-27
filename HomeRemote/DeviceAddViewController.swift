@@ -11,6 +11,7 @@
 import UIKit
 import Foundation
 import Firebase
+import CoreData
 
 class DeviceAddViewController: UIViewController {
     
@@ -49,12 +50,19 @@ class DeviceAddViewController: UIViewController {
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
         
         // store information of new device
-        let userDefaults = UserDefaults.standard
-        var devicesArray = NSKeyedUnarchiver.unarchiveObject(with: userDefaults.data(forKey: "deviceList")!) as! [Device]
-        let newDevice = Device(u: usernameField.text!, i: ipField.text!, p: passwordField.text!, n: nicknameField.text!, d: "RPi3")
-        devicesArray.append(newDevice)
-        userDefaults.set(NSKeyedArchiver.archivedData(withRootObject: devicesArray), forKey: "deviceList")
-        userDefaults.synchronize()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
+        device.deviceType = "RPi3"
+        device.ip = ipField.text
+        device.username = usernameField.text
+        device.password = passwordField.text
+        device.nickname = nicknameField.text
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
         
         // show new view controller
         self.navigationController?.pushViewController(nextVC, animated: true)

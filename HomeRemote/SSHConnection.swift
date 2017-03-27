@@ -55,7 +55,7 @@ class SSHConnection {
     
     // check the connection
     func checkConnection() -> Bool {
-        //cases for handling login errors/successes
+        //cases for handling login errors/successes. to be expanded on later.
         if NMsession?.isConnected == true {
             return true
         } else {
@@ -80,7 +80,7 @@ class SSHConnection {
         }
     }
     
-    // send SSH command; output response from terminal
+    // send SSH command; return the response
     func sendCommandWithResponse(_ command: String) -> String {
         var message = "none"
         if self.checkConnection() {

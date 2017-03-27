@@ -13,10 +13,9 @@ import UIKit
 class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let cellReuseIdentifier = "cell"
-    var projects = [Project]()
-    var devices = [Device]()
     var objectNumber = 0
     var session = SSHConnection.init()
+    var projects: [ProjectMO] = []
     
     @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
@@ -37,11 +36,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         // This view controller itself will provide the delegate methods and row data for the table view.
         projectsList.delegate = self
         projectsList.dataSource = self
-        
-        let userDefaults = UserDefaults.standard
-        if userDefaults.object(forKey: "projectList") != nil {
-            projects = userDefaults.object(forKey: "projectList") as! [Project]
-        }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +50,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let cell:UITableViewCell = projectsList.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
         // set the text from the data model
-        cell.textLabel?.text = projects[indexPath.row].device.nickname + ": " + projects[indexPath.row].projectName
+        cell.textLabel?.text = (projects[indexPath.row].deviceUsed?.nickname!)! + ": " + projects[indexPath.row].projectName!
         
         return cell
     }
@@ -63,7 +58,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let project = projects[indexPath.row]
-        let device = project.device
+        let device = project.deviceUsed
         session = SSHConnection.init(username: (device?.username)!, ip: (device?.ip)!, password: (device?.password)!, connect: true)
         
         

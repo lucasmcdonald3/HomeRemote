@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -16,9 +17,8 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var tableViewData = [String]()
     let cellReuseIdentifier = "cell"
-    var projects = [Project]()
-    var devices = [Device]()
     var objectNumber = 0
+    var devices: [DeviceMO] = []
     var session = SSHConnection.init()
     
     
@@ -43,10 +43,15 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func retrieveDeviceList() {
-        print("retrieve called")
-        let userDefaults = UserDefaults.standard
-        if let deviceData = userDefaults.object(forKey: "deviceList") as? Data {
-            devices = NSKeyedUnarchiver.unarchiveObject(with: deviceData) as! [Device]
+        
+        //
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
+        
+        do {
+            devices = try context.fetch(devicesFetch) as! [DeviceMO]
+        } catch {
+            fatalError("Failed to fetch devices: \(error)")
         }
     }
     
@@ -55,8 +60,8 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         self.deviceList.beginUpdates()
         var i = 0
         for device in devices {
-            print(device.nickname)
-            self.tableViewData.append(device.nickname)
+            print(device.nickname ?? "Test")
+            self.tableViewData.append(device.nickname!)
             self.deviceList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
             i += 1
         }
