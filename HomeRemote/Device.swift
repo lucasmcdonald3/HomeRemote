@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Device: NSManagedObject {
+class Device {
     
     @NSManaged var username:String?
     @NSManaged var ip:String?
