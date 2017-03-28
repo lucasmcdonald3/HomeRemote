@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81AE2AB55E16D730326E169F /* Pods_HomeRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE33A6AE504D04819A98267 /* Pods_HomeRemote.framework */; };
+		A00F51771E8B1CC7000A75D6 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F51761E8B1CC7000A75D6 /* Protocol.swift */; };
 		A01BBFDF1E82F7AE00403615 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01BBFDE1E82F7AE00403615 /* CoreData.framework */; };
 		A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */; };
 		A021EA0D1E6151F200BE17BA /* DeviceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */; };
@@ -48,6 +49,7 @@
 		482201D0205F621B959D6053 /* Pods_HomeRemoteTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRemoteTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3656D6714F21475723FD76 /* Pods-HomeRemoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRemoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HomeRemoteTests/Pods-HomeRemoteTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EE33A6AE504D04819A98267 /* Pods_HomeRemote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRemote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A00F51761E8B1CC7000A75D6 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		A01BBFDE1E82F7AE00403615 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnection.swift; sourceTree = "<group>"; };
 		A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAddViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				A0FFF9881E88C46C00EF153D /* HomeRemote.xcdatamodel */,
 				A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */,
+				A00F51761E8B1CC7000A75D6 /* Protocol.swift */,
 			);
 			name = AppLogic;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				A0E54C901E89A831001F0805 /* DeviceInfoViewController.swift in Sources */,
 				A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
+				A00F51771E8B1CC7000A75D6 /* Protocol.swift in Sources */,
 				A0633B761E614D01007934B6 /* AppDelegate.swift in Sources */,
 				A05AD4801E69378800A8FD44 /* ProjectAddViewController.swift in Sources */,
 				A09D71261E62315B0019D299 /* StepperRemoteViewController.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class ProjectAddViewController: UIViewController {
+class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     
     // UI elements
     @IBOutlet weak var githubField: UITextField!
@@ -19,6 +19,7 @@ class ProjectAddViewController: UIViewController {
     @IBOutlet weak var contactEmailLabel: UILabel!
     @IBOutlet weak var deviceButton: UIButton!
     
+    var deviceUsed: DeviceMO? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +80,13 @@ class ProjectAddViewController: UIViewController {
         //push the DeviceMenuViewController and set it to the select option
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
+        nextVC.delegate = self
         nextVC.mode = "addToProject"
         self.navigationController?.pushViewController(nextVC, animated: true)
         
         // get the device that was tapped and return it back to the PAVC
+        
+        
         
         // change button name
     }
@@ -95,6 +99,10 @@ class ProjectAddViewController: UIViewController {
             self.contactEmailLabel.alpha = 1.0 - self.contactEmailLabel.alpha
             
         })
+    }
+    
+    func writeValueBack(value: String) {
+        deviceButton.setTitle(value, for: .normal)
     }
     
     

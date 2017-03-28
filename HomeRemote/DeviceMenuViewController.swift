@@ -21,6 +21,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     var devices: [DeviceMO] = []
     var session = SSHConnection.init()
     var mode: String = "getDeviceInfo"
+    weak var delegate: writeValueBackDelegate?
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -98,7 +99,8 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             self.navigationController?.pushViewController(nextVC, animated: true)
             
         } else if (mode == "addToProject") {
-            
+            delegate?.writeValueBack(value: self.devices[indexPath.row].nickname!)
+            _ = self.navigationController?.popViewController(animated: true)
         }
         
     }

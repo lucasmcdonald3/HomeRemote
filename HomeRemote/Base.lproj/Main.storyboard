@@ -638,7 +638,7 @@
         <!--Add Custom Project-->
         <scene sceneID="SxF-4Q-fwN">
             <objects>
-                <viewController id="155-y5-rcK" customClass="ProjectAddViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectAddViewController" id="155-y5-rcK" customClass="ProjectAddViewController" customModule="HomeRemote" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sen-nD-mSa"/>
                         <viewControllerLayoutGuide type="bottom" id="10R-Jm-Hlb"/>
