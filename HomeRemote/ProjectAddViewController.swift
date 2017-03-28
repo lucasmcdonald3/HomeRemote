@@ -17,6 +17,7 @@ class ProjectAddViewController: UIViewController {
     @IBOutlet weak var publicSwitch: UISwitch!
     @IBOutlet weak var contactEmailField: UITextField!
     @IBOutlet weak var contactEmailLabel: UILabel!
+    @IBOutlet weak var deviceButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -28,12 +29,15 @@ class ProjectAddViewController: UIViewController {
         
         contactEmailLabel.alpha = 0
         contactEmailField.alpha = 0
+        
+        let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProjectAddViewController.keyboardHide))
+        view.addGestureRecognizer(keyboardHide)
     }
     
     func saveDeviceInfo(){
         
-        if(githubField.text == "" || (publicSwitch.isOn && contactEmailField.text == "")) {
-            let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields.", preferredStyle: UIAlertControllerStyle.alert)
+        if(githubField.text == "" || (publicSwitch.isOn && contactEmailField.text == "") || deviceButton.currentTitle == "Select") {
+            let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields and select one of your currently registered devices.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
@@ -42,8 +46,10 @@ class ProjectAddViewController: UIViewController {
             // store information of new device
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! ProjectMO
-            
-            project
+            /*project.deviceUsed = deviceButton.currentTitle
+            project.projectDescription = "Test description."
+            project.projectName = "TestName"
+            project.remoteType = "SingleButton"*/
             
             do {
                 try context.save()
@@ -68,6 +74,19 @@ class ProjectAddViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func deviceButtonPressed(_ sender: UIButton) {
+        
+        //push the DeviceMenuViewController and set it to the select option
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
+        nextVC.mode = "addToProject"
+        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        // get the device that was tapped and return it back to the PAVC
+        
+        // change button name
+    }
+    
     @IBAction func switchTriggered(_ sender: Any) {
         
         UIView.animate(withDuration: 0.2, animations: {
@@ -79,6 +98,9 @@ class ProjectAddViewController: UIViewController {
     }
     
     
-    
+    // hides keyboard when tapping out of text field
+    func keyboardHide() {
+        view.endEditing(true)
+    }
     
 }

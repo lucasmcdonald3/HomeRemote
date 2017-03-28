@@ -20,6 +20,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     var objectNumber = 0
     var devices: [DeviceMO] = []
     var session = SSHConnection.init()
+    var mode: String = "getDeviceInfo"
     
     
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
@@ -52,6 +53,8 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         } catch {
             fatalError("Failed to fetch devices: \(error)")
         }
+        
+        print(devices.count)
     }
     
     func populateDeviceView() {
@@ -85,13 +88,15 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceInfoViewController") as! DeviceInfoViewController
-        print("nickname:" + self.devices[indexPath.row].nickname!)
-        nextVC.centeredNickname.text = self.devices[indexPath.row].nickname
-        self.navigationController?.pushViewController(nextVC, animated: true)
-        
+        if(mode == "getDeviceInfo"){
+            let nextVC: DeviceInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeviceInfoViewController") as! DeviceInfoViewController
+            nextVC.deviceInt = indexPath.row
+            print("nickname:" + self.devices[indexPath.row].nickname!)
+            self.navigationController?.pushViewController(nextVC, animated: true)
+            
+        } else if (mode == "addToProject") {
+            
+        }
         
     }
     

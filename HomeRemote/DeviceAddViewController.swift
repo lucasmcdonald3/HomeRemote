@@ -15,19 +15,31 @@ import CoreData
 
 class DeviceAddViewController: UIViewController {
     
-    // dummy variable for class scopae
+    // dummy variable for class scope
     var session = SSHConnection.init()
+    var mode = "Add"
+    var deviceInt = 0
+    var devices: [DeviceMO] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // call last successful login info for easier login
+        if (mode == "Edit"){
+            updateFieldsFromDevice()
+        }
         
         // keyboard dismisser
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DeviceAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
         
+        retrieveDeviceList()
         
+        print(devices.count)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveDeviceList()
     }
         
         override func didReceiveMemoryWarning() {
@@ -35,7 +47,33 @@ class DeviceAddViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func retrieveDeviceList() {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
+        
+        do {
+            devices = try context.fetch(devicesFetch) as! [DeviceMO]
+            print(devices.count)
+        } catch {
+            fatalError("Failed to fetch devices: \(error)")
+        }
+        
+        print(devices.count)
+    }
     
+    func updateFieldsFromDevice() {
+        
+        print(devices.count)
+        
+        let device = devices[deviceInt]
+        
+        ipField.text = device.ip
+        usernameField.text = device.username
+        passwordField.text = device.password
+        nicknameField.text = device.nickname
+        
+    }
 
     
     /**
@@ -44,30 +82,44 @@ class DeviceAddViewController: UIViewController {
      
      */
     func saveDeviceInfo(){
-        
-        if(ipField.text == "" || usernameField.text == "" || passwordField.text == "" || nicknameField.text == "") {
-            let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            
-        } else {
-            
-            // store information of new device
+        if(mode == "Add"){
+            if(ipField.text == "" || usernameField.text == "" || passwordField.text == "" || nicknameField.text == "") {
+                let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                
+                // store information of new device
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
+                device.deviceType = "RPi3"
+                device.ip = ipField.text
+                device.username = usernameField.text
+                device.password = passwordField.text
+                device.nickname = nicknameField.text
+                
+                do {
+                    try context.save()
+                } catch {
+                    fatalError("Failure to save context: \(error)")
+                }
+                
+                // show new view controller
+                _ = self.navigationController?.popToRootViewController(animated: true)
+            }
+        } else if (mode == "Edit") {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
-            device.deviceType = "RPi3"
-            device.ip = ipField.text
-            device.username = usernameField.text
-            device.password = passwordField.text
-            device.nickname = nicknameField.text
+            devices[deviceInt].ip = ipField.text
+            devices[deviceInt].username = usernameField.text
+            devices[deviceInt].password = passwordField.text
+            devices[deviceInt].nickname = nicknameField.text
             
             do {
                 try context.save()
             } catch {
                 fatalError("Failure to save context: \(error)")
             }
-            
-            // show new view controller
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }

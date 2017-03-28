@@ -23,7 +23,7 @@ class FirebaseNavigationViewController: UITableViewController {
     override func viewDidLoad() {
         
         // load table view stuff
-        super.viewDidLoad()
+        
         
         // Register the table view cell class and its reuse id
         self.tableViewList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
@@ -39,7 +39,8 @@ class FirebaseNavigationViewController: UITableViewController {
         
         // populate table view with data from Firebase
         getFirebaseDatabase()
-
+        
+        super.viewDidLoad()
         
     }
     
