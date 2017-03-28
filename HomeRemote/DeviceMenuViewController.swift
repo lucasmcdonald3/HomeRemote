@@ -99,7 +99,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             self.navigationController?.pushViewController(nextVC, animated: true)
             
         } else if (mode == "addToProject") {
-            delegate?.writeValueBack(value: self.devices[indexPath.row].nickname!)
+            delegate?.writeValueBack(value: self.devices[indexPath.row].nickname!, device: self.devices[indexPath.row])
             _ = self.navigationController?.popViewController(animated: true)
         }
         
@@ -114,14 +114,11 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     {
         if editingStyle == .delete {
             
-            
-            
-            
             context.delete(devices[indexPath.row])
             appDelegate.saveContext()
             
             devices.remove(at: indexPath.row)
-            tableViewData.remove(at: indexPath.row)
+            deviceList.reloadData()
             
             
         }

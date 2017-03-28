@@ -19,7 +19,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     @IBOutlet weak var contactEmailLabel: UILabel!
     @IBOutlet weak var deviceButton: UIButton!
     
-    var deviceUsed: DeviceMO? = nil
+    var deviceFetched: DeviceMO? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +44,14 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
             
         } else {
             
+            
             // store information of new device
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! ProjectMO
-            /*project.deviceUsed = deviceButton.currentTitle
+            project.deviceUsed = deviceFetched
             project.projectDescription = "Test description."
-            project.projectName = "TestName"
-            project.remoteType = "SingleButton"*/
+            project.projectName = "Test name"
+            project.remoteType = "SingleButton"
             
             do {
                 try context.save()
@@ -91,6 +92,11 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         // change button name
     }
     
+    @IBAction func addPressed(_ sender: UIButton) {
+        saveDeviceInfo()
+    }
+    
+    
     @IBAction func switchTriggered(_ sender: Any) {
         
         UIView.animate(withDuration: 0.2, animations: {
@@ -101,8 +107,9 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         })
     }
     
-    func writeValueBack(value: String) {
+    func writeValueBack(value: String, device: DeviceMO) {
         deviceButton.setTitle(value, for: .normal)
+        deviceFetched = device
     }
     
     

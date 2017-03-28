@@ -667,7 +667,7 @@
                                 <rect key="frame" x="173" y="319" width="30" height="30"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="loginButton:" destination="155-y5-rcK" eventType="touchUpInside" id="6Kt-dc-vT6"/>
+                                    <action selector="addPressed:" destination="155-y5-rcK" eventType="touchUpInside" id="juu-Ry-3Sa"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ugz-MO-05P">

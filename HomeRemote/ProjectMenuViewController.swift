@@ -8,14 +8,20 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var tableViewData = [String]()
     
     let cellReuseIdentifier = "cell"
     var objectNumber = 0
     var session = SSHConnection.init()
     var projects: [ProjectMO] = []
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
@@ -36,7 +42,34 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         // This view controller itself will provide the delegate methods and row data for the table view.
         projectsList.delegate = self
         projectsList.dataSource = self
+        
+        retrieveProjectList()
+        populateProjectsView()
 
+    }
+    
+    func retrieveProjectList() {
+        
+        let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+        
+        do {
+            projects = try context.fetch(devicesFetch) as! [ProjectMO]
+        } catch {
+            fatalError("Failed to fetch devices: \(error)")
+        }
+
+    }
+    
+    func populateProjectsView() {
+        print("populate called")
+        self.projectsList.beginUpdates()
+        var i = 0
+        for project in projects {
+            self.tableViewData.append(project.projectName! + ": " + (project.deviceUsed?.nickname)!)
+            self.projectsList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+            i += 1
+        }
+        self.projectsList.endUpdates()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,6 +126,9 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
     {
         if editingStyle == .delete
         {
+            context.delete(projects[indexPath.row])
+            appDelegate.saveContext()
+            
             projects.remove(at: indexPath.row)
             projectsList.reloadData()
         }

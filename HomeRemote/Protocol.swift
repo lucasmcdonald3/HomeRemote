@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol writeValueBackDelegate: NSObjectProtocol{
-    func writeValueBack(value: String)
+    func writeValueBack(value: String, device: DeviceMO)
 }
