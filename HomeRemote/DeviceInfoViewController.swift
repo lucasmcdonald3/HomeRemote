@@ -20,6 +20,7 @@ class DeviceInfoViewController: UIViewController {
 
     var deviceInt = 0
     var devices: [DeviceMO] = []
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class DeviceInfoViewController: UIViewController {
     
     func retrieveDeviceList() {
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
         
         do {

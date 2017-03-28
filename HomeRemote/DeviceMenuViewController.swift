@@ -22,6 +22,9 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     var session = SSHConnection.init()
     var mode: String = "getDeviceInfo"
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         deviceList.setEditing(!deviceList.isEditing, animated: true)
@@ -44,8 +47,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func retrieveDeviceList() {
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
         
         do {
@@ -69,6 +71,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         self.deviceList.endUpdates()
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
@@ -107,10 +110,18 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .delete
-        {
+        if editingStyle == .delete {
+            
+            
+            
+            
+            context.delete(devices[indexPath.row])
+            appDelegate.saveContext()
+            
             devices.remove(at: indexPath.row)
-            deviceList.reloadData()
+            tableViewData.remove(at: indexPath.row)
+            
+            
         }
     }
     
