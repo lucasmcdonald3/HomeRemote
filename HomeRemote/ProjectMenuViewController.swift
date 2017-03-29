@@ -19,6 +19,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var objectNumber = 0
     var session = SSHConnection.init()
     var projects: [ProjectMO] = []
+    var secondLoad = false
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -45,7 +46,13 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         retrieveProjectList()
         populateProjectsView()
-
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewappppppppppprd")
+        retrieveProjectList()
+        updateProjectsView()
     }
     
     func retrieveProjectList() {
@@ -70,6 +77,20 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
             i += 1
         }
         self.projectsList.endUpdates()
+    }
+    
+    func updateProjectsView() {
+        print("projects:" + String(projects.count))
+        print("table:" + String(tableViewData.count))
+        if(projects.count != tableViewData.count){
+            self.projectsList.beginUpdates()
+            self.tableViewData.append(projects[projects.count-1].projectName! + ": " + (projects[projects.count-1].deviceUsed?.nickname)!)
+            self.projectsList.insertRows(at: [IndexPath(row: projectsList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+            
+            
+            
+            self.projectsList.endUpdates()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,14 +134,15 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         //self.present(stepVC, animated:true, completion:nil)
         self.navigationController?.pushViewController(remoteVC, animated: true)
         
-        
-        
     }
+    
+    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
+
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
@@ -130,6 +152,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
             appDelegate.saveContext()
             
             projects.remove(at: indexPath.row)
+            tableViewData.remove(at: indexPath.row)
             projectsList.reloadData()
         }
     }

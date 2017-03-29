@@ -35,6 +35,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         view.addGestureRecognizer(keyboardHide)
     }
     
+    
     func saveDeviceInfo(){
         
         if(githubField.text == "" || (publicSwitch.isOn && contactEmailField.text == "") || deviceButton.currentTitle == "Select") {
@@ -85,11 +86,6 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         nextVC.mode = "addToProject"
         self.navigationController?.pushViewController(nextVC, animated: true)
         
-        // get the device that was tapped and return it back to the PAVC
-        
-        
-        
-        // change button name
     }
     
     @IBAction func addPressed(_ sender: UIButton) {

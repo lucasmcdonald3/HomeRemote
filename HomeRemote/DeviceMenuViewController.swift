@@ -1,5 +1,5 @@
 //
-//  MenuViewController.swift
+//  DeviceMenuViewController.swift
 //
 //
 //  Created by Lucas McDonald on 2/25/17.
@@ -47,6 +47,12 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewappppppppppprd")
+        retrieveDeviceList()
+        updateDevicesView()
+    }
+    
     func retrieveDeviceList() {
 
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
@@ -71,6 +77,17 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             i += 1
         }
         self.deviceList.endUpdates()
+    }
+    
+    func updateDevicesView() {
+        print("devices:" + String(devices.count))
+        print("table:" + String(tableViewData.count))
+        if(devices.count != tableViewData.count){
+            self.deviceList.beginUpdates()
+            self.tableViewData.append(devices[devices.count-1].nickname!)
+            self.deviceList.insertRows(at: [IndexPath(row: deviceList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+            self.deviceList.endUpdates()
+        }
     }
 
     
@@ -118,6 +135,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             appDelegate.saveContext()
             
             devices.remove(at: indexPath.row)
+            tableViewData.remove(at: indexPath.row)
             deviceList.reloadData()
             
             

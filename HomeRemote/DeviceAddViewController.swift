@@ -106,7 +106,7 @@ class DeviceAddViewController: UIViewController {
                 }
                 
                 // show new view controller
-                _ = self.navigationController?.popToRootViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
             }
         } else if (mode == "Edit") {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -120,7 +120,7 @@ class DeviceAddViewController: UIViewController {
             } catch {
                 fatalError("Failure to save context: \(error)")
             }
-            _ = self.navigationController?.popToRootViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
     
