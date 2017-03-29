@@ -24,9 +24,12 @@ class DeviceInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         retrieveDeviceList()
-        
+        processDeviceInfo()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        retrieveDeviceList()
         processDeviceInfo()
     }
     
@@ -44,6 +47,7 @@ class DeviceInfoViewController: UIViewController {
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         let nextVC: DeviceAddViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DeviceAddViewController") as! DeviceAddViewController
         nextVC.mode = "Edit"
+        nextVC.deviceInt = self.deviceInt
         nextVC.retrieveDeviceList()
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
