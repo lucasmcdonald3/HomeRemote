@@ -65,6 +65,14 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         }
     }
     
+    func getInfoToPhone() {
+        
+    }
+    
+    func downloadFileToDevice() {
+        
+    }
+    
     @IBAction func publicInfoButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Make Project Public", message: "The project will be sent in for approval to be visible to other users in the app. Please ensure that you have followed the proper guidelines for submission prior to making your project public. You will need to provide your contact email for us to contact you if your project is approved or has issues.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
