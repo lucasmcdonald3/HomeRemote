@@ -30,28 +30,8 @@ class FirebaseDataViewController: UIViewController {
     override func viewDidLoad() {
         print("data link:"  + githubLink)
         titleLabel.text = titleData
+        descriptionText.text = descriptionData
         
-    }
-    
-    /*func getInfoFromGithub() {
-        var error: NSError?
-        let jsonData: NSData
-        
-        let jsonDict = JSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as NSDictionary
-    }*/
-    
-    func getRawLink(link: String) -> String {
-        if let rangeOfZero = githubLink.range(of: "com", options: .backwards) {
-            // Found a zero
-            var trimmedLink = String(githubLink.characters.suffix(from: rangeOfZero.upperBound)) // "984"
-            trimmedLink = "https://raw.githubusercontent.com" + trimmedLink + "/master/PhoneInfo.json"
-            print("trimmed link:" + trimmedLink)
-            return trimmedLink
-        }
-        else{
-            print("oopsie")
-            return "oop"
-        }
     }
     
 }

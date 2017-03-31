@@ -88,9 +88,6 @@ class FirebaseNavigationViewController: UITableViewController {
                 retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
                 detailVC.githubLink = retrievedGithubLink
                 
-                
-                
-                
                 let requestURL: NSURL = NSURL(string: self.getRawLink(link: retrievedGithubLink))!
                 let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
                 let session = URLSession.shared
@@ -101,7 +98,6 @@ class FirebaseNavigationViewController: UITableViewController {
                     let statusCode = httpResponse.statusCode
                     
                     if (statusCode == 200) {
-                        print("Everyone is fine, file downloaded successfully.")
                         
                         do{
                             
@@ -109,15 +105,19 @@ class FirebaseNavigationViewController: UITableViewController {
                             
                             if let fetchedTitle = json["Title"] as? String {
                                 detailVC.titleData = fetchedTitle
+                                print(fetchedTitle)
                             }
                             if let fetchedDescription = json["Description"] as? String {
-                                detailVC.descriptionData = fetchedDescription as! String
+                                detailVC.descriptionData = fetchedDescription
+                                print(fetchedDescription)
                             }
                             if let fetchedAuthor = json["Author"] as? String {
-                                detailVC.authorData = fetchedAuthor as! String
+                                detailVC.authorData = fetchedAuthor
+                                print(fetchedAuthor)
                             }
                             if let fetchedRemote = json["Remote Type"] as? String {
-                                detailVC.remoteTypeData = fetchedRemote as! String
+                                detailVC.remoteTypeData = fetchedRemote
+                                print(fetchedRemote)
                             }
                         }catch {
                             print("Error with Json: \(error)")
