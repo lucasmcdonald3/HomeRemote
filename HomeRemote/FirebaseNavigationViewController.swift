@@ -80,17 +80,26 @@ class FirebaseNavigationViewController: UITableViewController {
             let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController
             detailVC.prefRef = self.tableViewData[indexPath.row]
             
+            var retrievedGithubLink = ""
+            let group = DispatchGroup()
+            group.enter()
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
                 let value = snapshot.value as? NSDictionary
-                let retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
-                print(retrievedGithubLink)
+                retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
                 detailVC.githubLink = retrievedGithubLink
+                print(retrievedGithubLink)
+                group.leave()
             }) { (error) in
                 print(error.localizedDescription)
             }
+                
             
-            self.navigationController?.pushViewController(detailVC, animated: true)
+            group.notify(queue: DispatchQueue.main, execute: {
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            })
+            
+            
+            
         }
         
     }

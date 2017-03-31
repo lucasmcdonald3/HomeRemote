@@ -44,7 +44,8 @@ class FirebaseDataViewController: UIViewController {
             return trimmedLink
         }
         else{
-            return "oopsie"
+            print("oopsie")
+            return "oop"
         }
     }
     
