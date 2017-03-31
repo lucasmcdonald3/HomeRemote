@@ -78,7 +78,7 @@ class FirebaseNavigationViewController: UITableViewController {
         else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController
-            detailVC.prefRef = self.tableViewData[indexPath.row]
+            detailVC.prevRef = self.tableViewData[indexPath.row]
             
             var retrievedGithubLink = ""
             let group = DispatchGroup()

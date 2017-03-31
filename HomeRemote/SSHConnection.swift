@@ -87,6 +87,7 @@ class SSHConnection {
             let errorOut:NSErrorPointer = nil
             message = (NMsession?.channel.execute(command, error: errorOut, timeout: 5))!
         }
+        print(message)
         return message
     }
     
@@ -96,6 +97,10 @@ class SSHConnection {
     func resetConnection(){
         NMsession?.disconnect()
         NMsession?.connect()
+    }
+    
+    func closeConnection() {
+        NMsession?.disconnect()
     }
 
 

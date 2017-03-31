@@ -90,23 +90,36 @@ class DeviceAddViewController: UIViewController {
                 
             } else {
                 
-                // store information of new device
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
-                device.deviceType = "RPi3"
-                device.ip = ipField.text
-                device.username = usernameField.text
-                device.password = passwordField.text
-                device.nickname = nicknameField.text
+                session = SSHConnection.init(username: usernameField.text!, ip: ipField.text!, password: passwordField.text!, connect: true)
                 
-                do {
-                    try context.save()
-                } catch {
-                    fatalError("Failure to save context: \(error)")
+                if(session.checkAuthorization()) {
+                    
+                    session.closeConnection()
+                    
+                    // store information of new device
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    let device = NSEntityDescription.insertNewObject(forEntityName: "Device", into: context) as! DeviceMO
+                    device.deviceType = "RPi3"
+                    device.ip = ipField.text
+                    device.username = usernameField.text
+                    device.password = passwordField.text
+                    device.nickname = nicknameField.text
+                    
+                    do {
+                        try context.save()
+                    } catch {
+                        fatalError("Failure to save context: \(error)")
+                    }
+                    
+                    // show new view controller
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
                 
-                // show new view controller
-                _ = self.navigationController?.popViewController(animated: true)
+                else {
+                    let alert = UIAlertController(title: "Failed to Connect", message: "Failed to connect to the device. Ensure the device is connected and all information is entered correctly. You must be able to connect to the device in order to add it to your list of devices.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         } else if (mode == "Edit") {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

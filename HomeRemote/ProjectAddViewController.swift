@@ -74,13 +74,13 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     }
     
     @IBAction func publicInfoButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Make Project Public", message: "The project will be sent in for approval to be visible to other users in the app. Please ensure that you have followed the proper guidelines for submission prior to making your project public. You will need to provide your contact email for us to contact you if your project is approved or has issues.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Make Project Public", message: "The project will be sent in for approval to be visible to other users in the app. Please ensure that you have followed the proper guidelines for submission prior to making your project public. You will need to provide your email to let us contact you when your project is approved.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func projectInfoButtonPressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add Custom Project", message: "This allows you to add any project that you have created. You must provide a valid GitHub link. The project must conform to the proper guidelines to be interpreted in the app properly.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add Custom Project", message: "This allows you to add any project that you have created. The project will be downloaded from GitHub and configured on both your phone and your device when the button is pressed. You must provide a valid GitHub link. The project must conform to the proper guidelines to be interpreted in the app properly.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

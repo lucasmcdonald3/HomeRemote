@@ -581,8 +581,11 @@
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSj-uB-uWP">
-                                                <rect key="frame" x="10" y="93" width="121" height="30"/>
-                                                <state key="normal" title="Download Project"/>
+                                                <rect key="frame" x="10" y="93" width="80" height="30"/>
+                                                <state key="normal" title="Add Project"/>
+                                                <connections>
+                                                    <action selector="addProjectPressed:" destination="Py9-1q-rSg" eventType="touchUpInside" id="xqy-TR-ofq"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q51-PE-0Pd">
                                                 <rect key="frame" x="258" y="93" width="107" height="30"/>
@@ -591,12 +594,20 @@
                                                     <action selector="viewGithubPressed:" destination="Py9-1q-rSg" eventType="touchUpInside" id="0JS-aU-fff"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQn-lz-wiA">
+                                                <rect key="frame" x="100" y="97" width="22" height="22"/>
+                                                <connections>
+                                                    <action selector="infoPressed:" destination="Py9-1q-rSg" eventType="touchUpInside" id="gfr-Y5-OFX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="LQn-lz-wiA" firstAttribute="centerY" secondItem="KSj-uB-uWP" secondAttribute="centerY" id="BMz-mr-XKf"/>
                                             <constraint firstItem="Xc6-f1-HHs" firstAttribute="leading" secondItem="taK-Vz-vtP" secondAttribute="leadingMargin" id="H3c-nh-wXa"/>
                                             <constraint firstItem="3Qm-5u-Ecq" firstAttribute="leading" secondItem="taK-Vz-vtP" secondAttribute="leading" constant="10" id="Mj3-6h-Y8L"/>
                                             <constraint firstItem="KSj-uB-uWP" firstAttribute="leading" secondItem="taK-Vz-vtP" secondAttribute="leading" constant="10" id="OfV-Rq-7iI"/>
+                                            <constraint firstItem="LQn-lz-wiA" firstAttribute="leading" secondItem="KSj-uB-uWP" secondAttribute="trailing" constant="10" id="YLL-ed-Ab4"/>
                                             <constraint firstItem="KSj-uB-uWP" firstAttribute="top" secondItem="Xc6-f1-HHs" secondAttribute="bottom" constant="10" id="ZKJ-ag-BdO"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Xc6-f1-HHs" secondAttribute="trailing" id="beF-DB-cFH"/>
                                             <constraint firstItem="3Qm-5u-Ecq" firstAttribute="top" secondItem="taK-Vz-vtP" secondAttribute="top" constant="10" id="cKR-d2-y3V"/>
