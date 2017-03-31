@@ -33,5 +33,8 @@ class FirebaseDataViewController: UIViewController {
         descriptionText.text = descriptionData
         
     }
+    @IBAction func viewGithubPressed(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: githubLink)!)
+    }
     
 }

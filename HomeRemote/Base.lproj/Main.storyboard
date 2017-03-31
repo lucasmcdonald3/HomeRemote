@@ -587,6 +587,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q51-PE-0Pd">
                                                 <rect key="frame" x="258" y="93" width="107" height="30"/>
                                                 <state key="normal" title="View on GitHub"/>
+                                                <connections>
+                                                    <action selector="viewGithubPressed:" destination="Py9-1q-rSg" eventType="touchUpInside" id="0JS-aU-fff"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
