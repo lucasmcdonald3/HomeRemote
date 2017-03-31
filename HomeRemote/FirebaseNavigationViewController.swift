@@ -87,18 +87,61 @@ class FirebaseNavigationViewController: UITableViewController {
                 let value = snapshot.value as? NSDictionary
                 retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
                 detailVC.githubLink = retrievedGithubLink
-                print(retrievedGithubLink)
+                
+                
+                
+                
+                let requestURL: NSURL = NSURL(string: self.getRawLink(link: retrievedGithubLink))!
+                let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
+                let session = URLSession.shared
+                let task = session.dataTask(with: urlRequest as URLRequest) {
+                    (data, response, error) -> Void in
+                    
+                    let httpResponse = response as! HTTPURLResponse
+                    let statusCode = httpResponse.statusCode
+                    
+                    if (statusCode == 200) {
+                        print("Everyone is fine, file downloaded successfully.")
+                        
+                        do{
+                            
+                            let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: Any]
+                            
+                            if let fetchedTitle = json["Title"] as? String {
+                                detailVC.titleData = fetchedTitle
+                            }
+                            if let fetchedDescription = json["Description"] as? String {
+                                detailVC.descriptionData = fetchedDescription as! String
+                            }
+                            if let fetchedAuthor = json["Author"] as? String {
+                                detailVC.authorData = fetchedAuthor as! String
+                            }
+                            if let fetchedRemote = json["Remote Type"] as? String {
+                                detailVC.remoteTypeData = fetchedRemote as! String
+                            }
+                        }catch {
+                            print("Error with Json: \(error)")
+                        }
+                        
+                    }
+                }
+                
+                task.resume()
+                
+                
+                
+                
+                
+                
+                
                 group.leave()
             }) { (error) in
                 print(error.localizedDescription)
             }
-                
             
             group.notify(queue: DispatchQueue.main, execute: {
                 self.navigationController?.pushViewController(detailVC, animated: true)
             })
-            
-            
             
         }
         
@@ -132,6 +175,20 @@ class FirebaseNavigationViewController: UITableViewController {
             print(error.localizedDescription)
         }
         
+    }
+    
+    func getRawLink(link: String) -> String {
+        if let rangeOfZero = link.range(of: "com", options: .backwards) {
+            // Found a zero
+            var trimmedLink = String(link.characters.suffix(from: rangeOfZero.upperBound)) // "984"
+            trimmedLink = "https://raw.githubusercontent.com" + trimmedLink + "/master/PhoneInfo.json"
+            print("trimmed link:" + trimmedLink)
+            return trimmedLink
+        }
+        else{
+            print("oopsie")
+            return "oop"
+        }
     }
     
 }

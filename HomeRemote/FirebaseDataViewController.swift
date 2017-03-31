@@ -13,6 +13,10 @@ class FirebaseDataViewController: UIViewController {
     
     var prefRef = ""
     var githubLink = ""
+    var titleData = ""
+    var descriptionData = ""
+    var authorData = ""
+    var remoteTypeData = ""
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -25,7 +29,8 @@ class FirebaseDataViewController: UIViewController {
     
     override func viewDidLoad() {
         print("data link:"  + githubLink)
-        getRawLink(link: githubLink)
+        titleLabel.text = titleData
+        
     }
     
     /*func getInfoFromGithub() {
