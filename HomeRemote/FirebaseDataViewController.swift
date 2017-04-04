@@ -45,8 +45,35 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
             descriptionText.text = descriptionData
         } else {
             downloadToDevice()
+            saveProjectToCoreData()
         }
         
+    }
+    
+    func saveProjectToCoreData() {
+        // store information of new device
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! ProjectMO
+        
+        let index = devices.index(where: { (item) -> Bool in
+            item.nickname == deviceUsed // test if this is the item you're looking for
+        })
+        
+        let device = devices[index!]
+        
+        project.deviceUsed = device
+        project.projectDescription = "Test description."
+        project.projectName = "Test name"
+        project.remoteType = "SingleButton"
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+        // show new view controller
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     func downloadToDevice() {
@@ -59,10 +86,6 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         
         session = SSHConnection.init(username: device.username!, ip: device.ip!, password: device.password!, connect: true)
         _ = session.sendCommandWithResponse("ls")
-        
-        
-        
-        
         
     }
     

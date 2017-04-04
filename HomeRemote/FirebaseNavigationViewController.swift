@@ -60,6 +60,7 @@ class FirebaseNavigationViewController: UITableViewController {
         return tableViewData.count
     }
     
+
     
     
     // method to run when table view cell is tapped
