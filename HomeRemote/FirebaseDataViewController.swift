@@ -21,7 +21,12 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     
     var deviceUsed = ""
     
+    var devices : [DeviceMO] = []
+    var projects : [ProjectMO] = []
+    
     var session = SSHConnection.init()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -35,6 +40,7 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     override func viewDidLoad() {
         if(self.deviceUsed == "") {
             print("data link:"  + githubLink)
+            print("title label:" + titleData)
             titleLabel.text = titleData
             descriptionText.text = descriptionData
         } else {
@@ -45,16 +51,19 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     
     func downloadToDevice() {
         
-        let deviceList = retrieveDeviceList()
-        
-        let index = deviceList.index(where: { (item) -> Bool in
+        let index = devices.index(where: { (item) -> Bool in
             item.nickname == deviceUsed // test if this is the item you're looking for
         })
         
-        let device = deviceList[index!]
+        let device = devices[index!]
         
         session = SSHConnection.init(username: device.username!, ip: device.ip!, password: device.password!, connect: true)
         _ = session.sendCommandWithResponse("ls")
+        
+        
+        
+        
+        
     }
     
     
@@ -77,10 +86,21 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    func retrieveDeviceList() -> [DeviceMO] {
+    func retrieveProjectList() {
+        
+        let projectsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+        
+        do {
+            projects = try context.fetch(projectsFetch) as! [ProjectMO]
+        } catch {
+            fatalError("Failed to fetch devices: \(error)")
+        }
+        
+    }
+    
+    func retrieveDeviceList() {
         
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
-        var devices : [DeviceMO]
         
         do {
             devices = try context.fetch(devicesFetch) as! [DeviceMO]
@@ -88,12 +108,10 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
             fatalError("Failed to fetch devices: \(error)")
         }
         
-        return devices
     }
     
     func writeValueBack(value: String, device: DeviceMO) {
-        deviceButton.setTitle(value, for: .normal)
-        deviceFetched = device
+        
     }
     
     

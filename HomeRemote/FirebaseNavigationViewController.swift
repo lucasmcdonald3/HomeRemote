@@ -73,17 +73,17 @@ class FirebaseNavigationViewController: UITableViewController {
             nextVC.nodeDepth = self.nodeDepth + 1
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
-        
-        // if this is NOT a navigational node, i.e. links to a GitHub file
+            
+            // if this is NOT a navigational node, i.e. links to a GitHub file
         else {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController
             detailVC.prevRef = self.tableViewData[indexPath.row]
             
             var retrievedGithubLink = ""
-            let group = DispatchGroup()
-            group.enter()
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
                 let value = snapshot.value as? NSDictionary
                 retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
                 detailVC.githubLink = retrievedGithubLink
@@ -124,26 +124,22 @@ class FirebaseNavigationViewController: UITableViewController {
                         }
                         
                     }
+                    
                 }
                 
                 task.resume()
+                usleep(25000)
+                self.navigationController?.show(detailVC, sender: self)
                 
-                
-                
-                
-                
-                
-                
-                group.leave()
             }) { (error) in
                 print(error.localizedDescription)
             }
             
-            group.notify(queue: DispatchQueue.main, execute: {
-                self.navigationController?.pushViewController(detailVC, animated: true)
-            })
-            
         }
+        
+        
+        
+        
         
     }
     
