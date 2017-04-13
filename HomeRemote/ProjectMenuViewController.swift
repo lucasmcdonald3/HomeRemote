@@ -1,7 +1,7 @@
 //
 //  ProjectMenuViewController.swift
 //
-//  Provides a UITableView to display a list of registered projects.
+//  Provides a UITableView to display a list of registered devices.
 //
 //  Created by Lucas McDonald on 2/25/17.
 //
@@ -11,11 +11,18 @@ import UIKit
 import CoreData
 
 
-class ProjectMenuViewController: ManagedObjectViewController {
+class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // Data / storage elements
-    var secondLoad = false
-    var projects: [ProjectMO] = []
+    // Storage / data elements
+    var tableViewData = [String]()        // array read by the UITableView
+    let cellReuseIdentifier = "cell"
+    var objectNumber = 0
+    var session = SSHConnection.init()    // dummy initialization for class scope
+    var projects: [ProjectMO] = []        // array projectMOs are held in
+    var secondLoad = false                // to be used later (?)
+    // CoreData elements
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // UI elements
     @IBOutlet weak var projectsList: UITableView!
@@ -31,9 +38,6 @@ class ProjectMenuViewController: ManagedObjectViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        super.abstractProjects = self.projects
-        super.objectsList = self.projectsList
-        
         // Register the table view cell class and its reuse id
         self.projectsList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
@@ -47,52 +51,99 @@ class ProjectMenuViewController: ManagedObjectViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewappppppppppprd")
         retrieveProjectList()
         updateProjectsView()
     }
     
-    /******************
-       Data Methods
-    ******************/
+    /*******************
+        Data Methods
+    *******************/
     
     
     /**
      
-     Saves the Project list from CoreData into an array for easier access/modification.
+     Gets the list of projects from CoreData and stores it in an array for easier access.
      
-     **/
-    
-    
-    /******************
-        UI methods
-    ******************/
-    
-    
-    /**
- 
-     Fills the UITableView with formatted Strings.
- 
     **/
+    func retrieveProjectList() {
+        
+        // get list of projectMOs as CoreData
+        let projectsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+        
+        // convert CoreData to array
+        do {
+            projects = try context.fetch(projectsFetch) as! [ProjectMO]
+        } catch {
+            fatalError("Failed to fetch devices: \(error)")
+        }
+    }
+    
+    /**
+     
+     Updates the UITableView with elements from the projects array.
+     
+    **/
+    func populateProjectsView() {
+        
+        // tell the UITableView delegate to be ready to receieve changes
+        self.projectsList.beginUpdates()
+        
+        // add each project to the UITableView's delegate
+        for project in projects {
+            
+            // add the formatted String
+            self.tableViewData.append(project.projectName! + ": " + (project.deviceUsed?.nickname)!)
+            
+            // let the UITableView know that its delegate has added an extra device
+            self.projectsList.insertRows(at: [IndexPath(row: projectsList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+        }
+        
+        // end update session for the UITableView, allowing it to update correctly
+        self.projectsList.endUpdates()
+    }
     
     /**
  
-     Called on ViewDidLoad; deals with changes in the project view if any were made without reloading the view.
+     Checks if there were any changes to the data since the view last loaded.
+     If there are changes, update the list of projects accordingly.
  
     **/
     func updateProjectsView() {
-        print("projects:" + String(projects.count))
-        print("table:" + String(tableViewData.count))
-        if(projects.count != tableViewData.count){
+        
+        /*  if the number of projects is greater than from the number of projects displayed
+            i.e. if a project has been added                                              */
+        if(projects.count > tableViewData.count){
+            
+            // tell the UITableView delegate to be ready to receieve changes
             self.projectsList.beginUpdates()
+            
+            // add the new project to the delegate
             self.tableViewData.append(projects[projects.count-1].projectName! + ": " + (projects[projects.count-1].deviceUsed?.nickname)!)
+            
+            // let the UITableView know that its delegate has added an extra device
             self.projectsList.insertRows(at: [IndexPath(row: projectsList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
             
-            
-            
+            // end update session for the UITableView, allowing it to update correctly
             self.projectsList.endUpdates()
         }
     }
+    
+    func stringClassFromString(_ className: String) -> AnyClass! {
+        
+        /// get namespace
+        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String;
+        
+        /// get 'anyClass' with classname and namespace
+        let cls: AnyClass = NSClassFromString("\(namespace).\(className)")!;
+        
+        // return AnyClass!
+        return cls;
+    }
+    
+    
+    /*********************
+          UI Methods
+    *********************/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
@@ -122,6 +173,8 @@ class ProjectMenuViewController: ManagedObjectViewController {
         
         var remoteVC:RemoteViewController
         
+        remoteVC = storyBoard.instantiateViewController(withIdentifier: project.remoteType! + "RemoteViewController") as stringClassFromString(project.remoteType + "RemoteViewController") as! UITableView.Type
+        
         if(project.remoteType == "stepper"){
             remoteVC = storyBoard.instantiateViewController(withIdentifier: "StepperRemoteViewController") as! StepperRemoteViewController
         } else if(project.remoteType == "button"){
@@ -136,7 +189,19 @@ class ProjectMenuViewController: ManagedObjectViewController {
         self.navigationController?.pushViewController(remoteVC, animated: true)
         
     }
-
+    
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
+    
+    @IBAction func editPressed(_ sender: UIBarButtonItem) {
+        projectsList.setEditing(!projectsList.isEditing, animated: true)
+    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {

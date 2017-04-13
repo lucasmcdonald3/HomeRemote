@@ -37,9 +37,10 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     // Navigational elements
     var prevRef = ""             // stores the navigational depth of the previous node
     
+    
     /******************
-     Setup Methods
-     ******************/
+       Setup Methods
+    ******************/
     
     override func viewDidLoad() {
         // branching based on previous VC
@@ -55,9 +56,11 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         
     }
     
-    /*********************
-         Data Methods
-    *********************/
+    
+    /********************
+        Data Methods
+    ********************/
+    
     
     /**
  
@@ -98,21 +101,25 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     **/
     func downloadToDevice() {
         
+        // get the device that corresponds with the name chosen
         let index = devices.index(where: { (item) -> Bool in
-            item.nickname == deviceUsed // test if this is the item you're looking for
+            item.nickname == deviceUsed
         })
         
         let device = devices[index!]
         
+        // initiate connection to device
         session = SSHConnection.init(username: device.username!, ip: device.ip!, password: device.password!, connect: true)
+        
+        // send a shell command to download from Github
         _ = session.sendCommandWithResponse("ls")
         
     }
     
     
-    /*********************
-          UI Methods
-    *********************/
+    /*******************
+         UI Methods
+    *******************/
     
     @IBAction func viewGithubPressed(_ sender: Any) {
         UIApplication.shared.open(URL(string: githubLink)!)
