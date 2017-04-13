@@ -1,11 +1,10 @@
 //
 //  LoginViewController.swift
-//  QRT
+//  HomeRemote
 //
 //  Class that controls the view of the login screen. Creates an SSH connection then hands it to the next view controller.
 //
 //  Created by Lucas McDonald on 7/22/16.
-//  Copyright © 2016 Lucas McDonald.
 //
 
 import UIKit
@@ -80,7 +79,7 @@ class DeviceAddViewController: UIViewController {
      
      Saves the device info into NSUserDefaults and pushes the ProjectMenuViewController.
      
-     */
+     **/
     func saveDeviceInfo(){
         if(mode == "Add"){
             if(ipField.text == "" || usernameField.text == "" || passwordField.text == "" || nicknameField.text == "") {

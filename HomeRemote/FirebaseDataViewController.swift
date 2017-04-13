@@ -3,7 +3,6 @@
 //  HomeRemote
 //
 //  Created by Lucas McDonald on 3/2/17.
-//  Copyright © 2017 Lucas McDonald. All rights reserved.
 //
 
 import Foundation
@@ -12,44 +11,55 @@ import CoreData
 
 class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     
-    var prevRef = ""
-    var githubLink = ""
-    var titleData = ""
-    var descriptionData = ""
-    var authorData = ""
-    var remoteTypeData = ""
+    // UI elements
+    var githubLink = ""          // stores the link to the project's GitHub page
+    var titleData = ""           // stores data for the titleLabel UILabel
+    var descriptionData = ""     // stores data for the descriptionText UITextView
+    var authorData = ""          // stores data for the author of the project (currently not used in a UI element)
+    var remoteTypeData = ""      // stores the type of remote used by the project
     
-    var deviceUsed = ""
-    
-    var devices : [DeviceMO] = []
-    var projects : [ProjectMO] = []
-    
-    var session = SSHConnection.init()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!  // UI element that allows scrolling; container UIView
     @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var githubButton: UIButton!
     
+    // Storage / data elements
+    var deviceUsed = ""          // stores the name of the device to be used by the project
+    var devices : [DeviceMO] = []      // stores all of the devices used in the app (CoreData)
+    var projects : [ProjectMO] = []    // stores all of the projects used in the app (CoreData)
+    var session = SSHConnection.init()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    // Navigational elements
+    var prevRef = ""             // stores the navigational depth of the previous node
+    
+    // setup
     override func viewDidLoad() {
-        if(self.deviceUsed == "") {
+        // branching based on previous VC
+        if(self.deviceUsed == "") {    // if this is accessed from a navigational node
             print("data link:"  + githubLink)
             print("title label:" + titleData)
             titleLabel.text = titleData
             descriptionText.text = descriptionData
-        } else {
+        } else { // if this is accessed after choosing a device to use with this project
             downloadToDevice()
             saveProjectToCoreData()
         }
         
     }
     
+    //////////////////////
+    ///  Data Methods  ///
+    //////////////////////
+    
+    /**
+ 
+    Saves project in CoreData.
+ 
+    **/
     func saveProjectToCoreData() {
         // store information of new device
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -76,6 +86,12 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    /**
+ 
+    Sends a command to the device (e.g. RPi3) to download the project from GitHub.
+     
+    **/
     func downloadToDevice() {
         
         let index = devices.index(where: { (item) -> Bool in
@@ -90,9 +106,12 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     }
     
     
+    /*
+            UI METHODS
+                            */
     
     @IBAction func viewGithubPressed(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: githubLink)!)
+        UIApplication.shared.open(URL(string: githubLink)!)
     }
     
     @IBAction func infoPressed(_ sender: Any) {
