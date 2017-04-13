@@ -45,6 +45,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         projectsList.delegate = self
         projectsList.dataSource = self
         
+        // populate the table with projects from CoreData
         retrieveProjectList()
         populateProjectsView()
         
@@ -64,7 +65,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
      
      Gets the list of projects from CoreData and stores it in an array for easier access.
      
-    **/
+    */
     func retrieveProjectList() {
         
         // get list of projectMOs as CoreData
@@ -82,7 +83,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
      
      Updates the UITableView with elements from the projects array.
      
-    **/
+    */
     func populateProjectsView() {
         
         // tell the UITableView delegate to be ready to receieve changes
@@ -107,7 +108,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
      Checks if there were any changes to the data since the view last loaded.
      If there are changes, update the list of projects accordingly.
  
-    **/
+    */
     func updateProjectsView() {
         
         /*  if the number of projects is greater than from the number of projects displayed
@@ -120,7 +121,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
             // add the new project to the delegate
             self.tableViewData.append(projects[projects.count-1].projectName! + ": " + (projects[projects.count-1].deviceUsed?.nickname)!)
             
-            // let the UITableView know that its delegate has added an extra device
+            // let the UITableView know that its delegate has added an extra project
             self.projectsList.insertRows(at: [IndexPath(row: projectsList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
             
             // end update session for the UITableView, allowing it to update correctly
@@ -163,58 +164,69 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // get project and device from the tapped cell
         let project = projects[indexPath.row]
         let device = project.deviceUsed
+        
+        // instantiate connection
         session = SSHConnection.init(username: (device?.username)!, ip: (device?.ip)!, password: (device?.password)!, connect: true)
         
-        
-        // ViewController being switched to
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        var remoteVC:RemoteViewController
-        
-        remoteVC = storyBoard.instantiateViewController(withIdentifier: project.remoteType! + "RemoteViewController") as stringClassFromString(project.remoteType + "RemoteViewController") as! UITableView.Type
-        
-        if(project.remoteType == "stepper"){
-            remoteVC = storyBoard.instantiateViewController(withIdentifier: "StepperRemoteViewController") as! StepperRemoteViewController
-        } else if(project.remoteType == "button"){
-            remoteVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
-        } else {
-            remoteVC = storyBoard.instantiateViewController(withIdentifier: "ButtonRemoteViewController") as! ButtonRemoteViewController
+        // check if the device accepts the connection
+        if session.checkAuthorization() {
+            
+            // ViewController being switched to
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            // instantiate generic RemoteViewController
+            var remoteVC:RemoteViewController
+            
+            // cast the RemoteVC into the VC specified by the project
+            let AdaptiveVC = stringClassFromString(project.remoteType + "RemoteViewController") as! RemoteViewController.Type
+            remoteVC = storyBoard.instantiateViewController(withIdentifier: project.remoteType! + "RemoteViewController") as AdaptiveVC
+            
+            // give RemoteVC the data it needs to reinitialize the ssh connection
+            remoteVC.session = self.session
+            
+            // push the RemoteVC
+            self.navigationController?.pushViewController(remoteVC, animated: true)
         }
         
-        // give SRVC the data it needs to reinitialize the ssh connection
-        remoteVC.session = self.session
-        //self.present(stepVC, animated:true, completion:nil)
-        self.navigationController?.pushViewController(remoteVC, animated: true)
-        
+        // if the connection failed for some reason (incorrect login/ip info)
+        else {
+            
+        }
     }
-    
-    
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
     
-    
+    // edit button
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         projectsList.setEditing(!projectsList.isEditing, animated: true)
     }
     
-    
+    // deleting element from table
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .delete
-        {
+        if editingStyle == .delete {
+            
+            // remove from CoreData
             context.delete(projects[indexPath.row])
+            
+            // re-save CoreData
             appDelegate.saveContext()
             
+            // remove from list of projects
             projects.remove(at: indexPath.row)
+            
+            // remove from tableViewData
             tableViewData.remove(at: indexPath.row)
+            
+            // reload table view
             projectsList.reloadData()
         }
     }
-    
-    
 }

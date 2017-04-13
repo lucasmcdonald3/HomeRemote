@@ -12,7 +12,7 @@ import CoreData
 class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     
     // Storage / data elements
-    var deviceUsed = ""          // stores the name of the device to be used by the project
+    var deviceUsed = ""                // stores the name of the device to be used by the project
     var devices : [DeviceMO] = []      // stores all of the devices used in the app (CoreData)
     var projects : [ProjectMO] = []    // stores all of the projects used in the app (CoreData)
     var session = SSHConnection.init()
@@ -66,30 +66,36 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
  
     Saves project in CoreData.
  
-    **/
+    */
     func saveProjectToCoreData() {
-        // store information of new device
+        
+        // access CoreData stack
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        // instantiate ProjectMO object to be edited and stored
         let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! ProjectMO
         
+        // find the device that matches the given String
         let index = devices.index(where: { (item) -> Bool in
-            item.nickname == deviceUsed // test if this is the item you're looking for
+            item.nickname == deviceUsed
         })
         
         let device = devices[index!]
         
+        // store each element into the created ProjectMO
         project.deviceUsed = device
         project.projectDescription = "Test description."
         project.projectName = "Test name"
         project.remoteType = "SingleButton"
         
+        // save the ProjectMO object into CoreData
         do {
             try context.save()
         } catch {
             fatalError("Failure to save context: \(error)")
         }
         
-        // show new view controller
+        // show root view controller (ProjectMenuVC)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -98,7 +104,7 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
  
     Sends a command to the device (e.g. RPi3) to download the project from GitHub.
      
-    **/
+    */
     func downloadToDevice() {
         
         // get the device that corresponds with the name chosen

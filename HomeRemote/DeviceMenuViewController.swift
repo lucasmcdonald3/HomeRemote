@@ -13,8 +13,7 @@ import CoreData
 
 class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var deviceList: UITableView!
-    
+    // Storage / data elements
     var tableViewData = [String]()
     let cellReuseIdentifier = "cell"
     var objectNumber = 0
@@ -22,15 +21,18 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     var session = SSHConnection.init()
     var mode: String = "getDeviceInfo"
     weak var delegate: writeValueBackDelegate?
-    
+    // CoreData elements
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    // UI elements
+    @IBOutlet weak var deviceList: UITableView!
+
     
-    
-    @IBAction func editPressed(_ sender: UIBarButtonItem) {
-        deviceList.setEditing(!deviceList.isEditing, animated: true)
-    }
-    
+    /******************
+       Setup Methods
+    ******************/
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,55 +43,95 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         deviceList.delegate = self
         deviceList.dataSource = self
         
+        // populate the table with devices from CoreData
         retrieveDeviceList()
-        
         populateDeviceView()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewappppppppppprd")
         retrieveDeviceList()
         updateDevicesView()
     }
     
+    
+    /*******************
+        Data Methods
+    *******************/
+    
+    
+    /**
+     
+     Gets the list of devices from CoreData and stores it in an array for easier access.
+     
+     */
     func retrieveDeviceList() {
 
+        // get list of projectMOs as CoreData
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
         
+        // convert CoreData to an array
         do {
             devices = try context.fetch(devicesFetch) as! [DeviceMO]
         } catch {
             fatalError("Failed to fetch devices: \(error)")
         }
-        
-        print(devices.count)
     }
     
+    /**
+     
+     Updates the UITableView with elements from the projects array.
+     
+     */
     func populateDeviceView() {
-        print("populate called")
+
+        // tell the UITableView delegate to be ready to receieve changes
         self.deviceList.beginUpdates()
-        var i = 0
+        
+        // add each device to the UITableView's delegate
         for device in devices {
-            print(device.nickname ?? "Test")
+            
+            // add the device's nickname
             self.tableViewData.append(device.nickname!)
-            self.deviceList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
-            i += 1
+            
+            // let the UITableView know that its delegate has added an extra device
+            self.deviceList.insertRows(at: [IndexPath(row: deviceList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
         }
+        
+        // end update session for the UITableView, allowing it to update correctly
         self.deviceList.endUpdates()
     }
     
+    
+    /**
+     
+     Checks if there were any changes to the data since the view last loaded.
+     If there are changes, update the list of devices accordingly.
+     
+     */
     func updateDevicesView() {
-        print("devices:" + String(devices.count))
-        print("table:" + String(tableViewData.count))
-        if(devices.count != tableViewData.count){
+        
+        /*  if the number of devices is greater than from the number of devices displayed
+         i.e. if a device has been added                                              */
+        if(devices.count > tableViewData.count){
+            
+            // tell the UITableView delegate to be ready to receieve changes
             self.deviceList.beginUpdates()
+            
+            // add the new device to the delegate
             self.tableViewData.append(devices[devices.count-1].nickname!)
+            
+            // let the UITableView know that its delegate has added an extra device
             self.deviceList.insertRows(at: [IndexPath(row: deviceList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+            
+            // end update session for the UITableView, allowing it to update correctly
             self.deviceList.endUpdates()
         }
     }
 
+    /*********************
+          UI Methods
+    *********************/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
@@ -140,6 +182,10 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             
             
         }
+    }
+    
+    @IBAction func editPressed(_ sender: UIBarButtonItem) {
+        deviceList.setEditing(!deviceList.isEditing, animated: true)
     }
     
     
