@@ -2,14 +2,19 @@
 //  ProjectAddViewController.swift
 //  HomeRemote
 //
-//  Created by Lucas McDonald on 3/2/17.
+//  Adds a project to the list of stored projects.
+//
+//  Created by Lucas McDonald.
 //
 
-import Foundation
 import UIKit
+import Foundation
 import CoreData
 
 class ProjectAddViewController: UIViewController, writeValueBackDelegate {
+    
+    // Storage / Data elements
+    var deviceFetched: DeviceMO? = nil
     
     // UI elements
     @IBOutlet weak var githubField: UITextField!
@@ -18,34 +23,43 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     @IBOutlet weak var contactEmailLabel: UILabel!
     @IBOutlet weak var deviceButton: UIButton!
     
-    var deviceFetched: DeviceMO? = nil
+    
+    /******************
+       Setup Methods
+    ******************/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // start the public switch in the off state
         publicSwitch.isOn = false
         
         // hide fields that should only be visible if the project is to be made public
-        
         contactEmailLabel.alpha = 0
         contactEmailField.alpha = 0
         
+        // load the keyboard hider
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProjectAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
     }
     
     
-    func saveDeviceInfo(){
+    /******************
+       Data Methods
+    ******************/
+    
+    func saveProjectInfo(){
         
+        // if any fields are empty
         if(githubField.text == "" || (publicSwitch.isOn && contactEmailField.text == "") || deviceButton.currentTitle == "Select") {
             let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields and select one of your currently registered devices.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
+        // if all fields are filled
         } else {
             
-            
-            // store information of new device
+            // store information of new project
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! ProjectMO
             project.deviceUsed = deviceFetched
@@ -59,18 +73,33 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
                 fatalError("Failure to save context: \(error)")
             }
             
-            // show new view controller
+            // pop to ProjectMenuVC
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
+    
+    /*
+     
+     Downloads info about the project (remote type, etc.) to the phone for storage.
+     
+     */
     func getInfoToPhone() {
         
     }
     
+    /*
+     
+     Downloads the code for the device onto the device.
+     
+     */
     func downloadFileToDevice() {
         
     }
+    
+    /******************
+        UI methods
+    ******************/
     
     @IBAction func publicInfoButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Make Project Public", message: "The project will be sent in for approval to be visible to other users in the app. Please ensure that you have followed the proper guidelines for submission prior to making your project public. You will need to provide your email to let us contact you when your project is approved.", preferredStyle: UIAlertControllerStyle.alert)
@@ -96,7 +125,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     }
     
     @IBAction func addPressed(_ sender: UIButton) {
-        saveDeviceInfo()
+        saveProjectInfo()
     }
     
     

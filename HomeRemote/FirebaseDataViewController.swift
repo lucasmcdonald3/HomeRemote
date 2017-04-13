@@ -18,7 +18,7 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     var authorData = ""          // stores data for the author of the project (currently not used in a UI element)
     var remoteTypeData = ""      // stores the type of remote used by the project
     
-    @IBOutlet weak var scrollView: UIScrollView!  // UI element that allows scrolling; container UIView
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionText: UITextView!
@@ -51,9 +51,9 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         
     }
     
-    //////////////////////
-    ///  Data Methods  ///
-    //////////////////////
+    /*********************
+         Data Methods
+    *********************/
     
     /**
  
@@ -106,9 +106,9 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     }
     
     
-    /*
-            UI METHODS
-                            */
+    /*********************
+          UI Methods
+    *********************/
     
     @IBAction func viewGithubPressed(_ sender: Any) {
         UIApplication.shared.open(URL(string: githubLink)!)
