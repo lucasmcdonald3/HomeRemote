@@ -10,6 +10,7 @@
 		81AE2AB55E16D730326E169F /* Pods_HomeRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE33A6AE504D04819A98267 /* Pods_HomeRemote.framework */; };
 		A00F51771E8B1CC7000A75D6 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F51761E8B1CC7000A75D6 /* Protocol.swift */; };
 		A01BBFDF1E82F7AE00403615 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01BBFDE1E82F7AE00403615 /* CoreData.framework */; };
+		A01E5B3F1E9FD30D00CEFECA /* ManagedObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01E5B3E1E9FD30D00CEFECA /* ManagedObjectViewController.swift */; };
 		A021EA0B1E6151EB00BE17BA /* SSHConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */; };
 		A021EA0D1E6151F200BE17BA /* DeviceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */; };
 		A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A021EA0E1E61520200BE17BA /* DataViewController.swift */; };
@@ -51,6 +52,7 @@
 		8EE33A6AE504D04819A98267 /* Pods_HomeRemote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRemote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00F51761E8B1CC7000A75D6 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		A01BBFDE1E82F7AE00403615 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A01E5B3E1E9FD30D00CEFECA /* ManagedObjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectViewController.swift; sourceTree = "<group>"; };
 		A021EA0A1E6151EB00BE17BA /* SSHConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSHConnection.swift; sourceTree = "<group>"; };
 		A021EA0C1E6151F200BE17BA /* DeviceAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceAddViewController.swift; sourceTree = "<group>"; };
 		A021EA0E1E61520200BE17BA /* DataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataViewController.swift; path = HomeRemote/DataViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				A05AD47D1E69220900A8FD44 /* FirebaseDataViewController.swift */,
 				A05AD47F1E69378800A8FD44 /* ProjectAddViewController.swift */,
 				A08FCC481E69A4F5000B1027 /* DeviceMenuViewController.swift */,
+				A01E5B3E1E9FD30D00CEFECA /* ManagedObjectViewController.swift */,
 				A0E54C8F1E89A831001F0805 /* DeviceInfoViewController.swift */,
 			);
 			name = MenuNavigation;
@@ -433,6 +436,7 @@
 				A08FCC491E69A4F5000B1027 /* DeviceMenuViewController.swift in Sources */,
 				A021EA0D1E6151F200BE17BA /* DeviceAddViewController.swift in Sources */,
 				A0E54C901E89A831001F0805 /* DeviceInfoViewController.swift in Sources */,
+				A01E5B3F1E9FD30D00CEFECA /* ManagedObjectViewController.swift in Sources */,
 				A05AD47E1E69220900A8FD44 /* FirebaseDataViewController.swift in Sources */,
 				A021EA0F1E61520200BE17BA /* DataViewController.swift in Sources */,
 				A00F51771E8B1CC7000A75D6 /* Protocol.swift in Sources */,

@@ -1,6 +1,7 @@
 //
-//  MenuViewController.swift
+//  ProjectMenuViewController.swift
 //
+//  Provides a UITableView to display a list of registered projects.
 //
 //  Created by Lucas McDonald on 2/25/17.
 //
@@ -10,31 +11,28 @@ import UIKit
 import CoreData
 
 
-class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProjectMenuViewController: ManagedObjectViewController {
     
-    var tableViewData = [String]()
-    
-    let cellReuseIdentifier = "cell"
-    var objectNumber = 0
-    var session = SSHConnection.init()
-    var projects: [ProjectMO] = []
+    // Data / storage elements
     var secondLoad = false
+    var projects: [ProjectMO] = []
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    // UI elements
     @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     
     
-    @IBAction func editPressed(_ sender: UIBarButtonItem) {
-        projectsList.setEditing(!projectsList.isEditing, animated: true)
-    }
+    /******************
+       Setup Methods
+    ******************/
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        super.abstractProjects = self.projects
+        super.objectsList = self.projectsList
         
         // Register the table view cell class and its reuse id
         self.projectsList.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
@@ -54,30 +52,34 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         updateProjectsView()
     }
     
-    func retrieveProjectList() {
-        
-        let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
-        
-        do {
-            projects = try context.fetch(devicesFetch) as! [ProjectMO]
-        } catch {
-            fatalError("Failed to fetch devices: \(error)")
-        }
-
-    }
+    /******************
+       Data Methods
+    ******************/
     
-    func populateProjectsView() {
-        print("populate called")
-        self.projectsList.beginUpdates()
-        var i = 0
-        for project in projects {
-            self.tableViewData.append(project.projectName! + ": " + (project.deviceUsed?.nickname)!)
-            self.projectsList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
-            i += 1
-        }
-        self.projectsList.endUpdates()
-    }
     
+    /**
+     
+     Saves the Project list from CoreData into an array for easier access/modification.
+     
+     **/
+    
+    
+    /******************
+        UI methods
+    ******************/
+    
+    
+    /**
+ 
+     Fills the UITableView with formatted Strings.
+ 
+    **/
+    
+    /**
+ 
+     Called on ViewDidLoad; deals with changes in the project view if any were made without reloading the view.
+ 
+    **/
     func updateProjectsView() {
         print("projects:" + String(projects.count))
         print("table:" + String(tableViewData.count))
@@ -133,13 +135,6 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         //self.present(stepVC, animated:true, completion:nil)
         self.navigationController?.pushViewController(remoteVC, animated: true)
         
-    }
-    
-    
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
-        return true
     }
 
     

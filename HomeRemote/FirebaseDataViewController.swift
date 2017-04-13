@@ -11,6 +11,14 @@ import CoreData
 
 class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     
+    // Storage / data elements
+    var deviceUsed = ""          // stores the name of the device to be used by the project
+    var devices : [DeviceMO] = []      // stores all of the devices used in the app (CoreData)
+    var projects : [ProjectMO] = []    // stores all of the projects used in the app (CoreData)
+    var session = SSHConnection.init()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     // UI elements
     var githubLink = ""          // stores the link to the project's GitHub page
     var titleData = ""           // stores data for the titleLabel UILabel
@@ -25,18 +33,14 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var githubButton: UIButton!
     
-    // Storage / data elements
-    var deviceUsed = ""          // stores the name of the device to be used by the project
-    var devices : [DeviceMO] = []      // stores all of the devices used in the app (CoreData)
-    var projects : [ProjectMO] = []    // stores all of the projects used in the app (CoreData)
-    var session = SSHConnection.init()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Navigational elements
     var prevRef = ""             // stores the navigational depth of the previous node
     
-    // setup
+    /******************
+     Setup Methods
+     ******************/
+    
     override func viewDidLoad() {
         // branching based on previous VC
         if(self.deviceUsed == "") {    // if this is accessed from a navigational node

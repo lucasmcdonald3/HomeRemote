@@ -82,17 +82,17 @@ class FirebaseNavigationViewController: UITableViewController {
         let detailVC = storyBoard.instantiateViewController(withIdentifier: "FirebaseDataViewController") as! FirebaseDataViewController
         detailVC.prevRef = self.tableViewData[indexPath.row]
         
-        // Github link for trimming
-        var retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as String
-        detailVC.githubLink = retrievedGithubLink
-        
         // access the data from Firebase
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            // initiate dictionary for storing JSON
+            // initialize dictionary to store accessed JSON
             let value = snapshot.value as? NSDictionary
             
-            // initiate URL request to access JSON
+            // get link to Github project
+            var retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
+            detailVC.githubLink = retrievedGithubLink
+            
+            // initiate URL request to directly access PhoneInfo.json
             let requestURL: NSURL = NSURL(string: self.getPhoneInfoJsonLink(link: retrievedGithubLink))!
             let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
             let session = URLSession.shared

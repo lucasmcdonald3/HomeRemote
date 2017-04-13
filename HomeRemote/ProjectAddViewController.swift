@@ -48,6 +48,11 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
        Data Methods
     ******************/
     
+    /**
+ 
+     Saves the Project into a new project or an existing one, depending on the state of the view.
+     
+    **/
     func saveProjectInfo(){
         
         // if any fields are empty
@@ -115,7 +120,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     
     @IBAction func deviceButtonPressed(_ sender: UIButton) {
         
-        //push the DeviceMenuViewController and set it to the select option
+        //push the DeviceMenuViewController and set it to the "select" option
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
         nextVC.delegate = self

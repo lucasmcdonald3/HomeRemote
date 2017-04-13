@@ -1,6 +1,7 @@
 //
 //  DeviceMenuViewController.swift
 //
+//  Provides a UITableView to display a list of registered devices.
 //
 //  Created by Lucas McDonald on 2/25/17.
 //
