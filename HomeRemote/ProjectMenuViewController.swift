@@ -146,6 +146,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
           UI Methods
     *********************/
     
+    /// get the number of elements that should be in the tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
     }
@@ -198,8 +199,8 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
+    // allows editing of tableView
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     

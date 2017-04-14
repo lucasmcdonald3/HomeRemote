@@ -43,17 +43,21 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
     ******************/
     
     override func viewDidLoad() {
-        // branching based on previous VC
-        if(self.deviceUsed == "") {    // if this is accessed from a navigational node
-            print("data link:"  + githubLink)
-            print("title label:" + titleData)
+        
+        // if accessed from navigational node
+        if(self.deviceUsed == "") {
+            
+            // update the UI accordingly
             titleLabel.text = titleData
             descriptionText.text = descriptionData
-        } else { // if this is accessed after choosing a device to use with this project
+            
+        // if this is accessed after choosing a device to use with this project (not the first time loading)
+        } else {
+            
+            // get the project loaded on the phone and the device. it's good to go!
             downloadToDevice()
             saveProjectToCoreData()
         }
-        
     }
     
     
@@ -127,24 +131,40 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
          UI Methods
     *******************/
     
+    // called when the button to view the Github page is pressed
     @IBAction func viewGithubPressed(_ sender: Any) {
         UIApplication.shared.open(URL(string: githubLink)!)
     }
     
+    // called by the info button. gives a background on how to add a project.
     @IBAction func infoPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Add Project", message: "This will add the project to your list of projects. The project will be downloaded from GitHub and configured on both your phone and your device when the button is pressed. You must be connected to the device the project will be used with in order to add the project.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    // called when the "add" button is pressed
     @IBAction func addProjectPressed(_ sender: Any) {
+        
+        // instantiate a DeviceMenuVC
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
+        
+        // let the DeviceMenuVC know to write data back to this
         nextVC.delegate = self
+        
+        // let the DeviceMenuVC know that, when a cell is tapped, it will write back to this view
         nextVC.mode = "addToProject"
+        
+        // push the DeviceMenuVC
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    /**
+     
+     Gets the list of projects from CoreData and stores it in an array for easier access.
+     
+     */
     func retrieveProjectList() {
         
         let projectsFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
@@ -157,6 +177,11 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         
     }
     
+    /**
+     
+     Gets the list of devices from CoreData and stores it in an array for easier access.
+     
+     */
     func retrieveDeviceList() {
         
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
@@ -169,6 +194,7 @@ class FirebaseDataViewController: UIViewController, writeValueBackDelegate {
         
     }
     
+    // unused for now
     func writeValueBack(value: String, device: DeviceMO) {
         
     }

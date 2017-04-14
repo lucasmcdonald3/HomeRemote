@@ -14,14 +14,14 @@ import CoreData
 class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     
     // Storage / Data elements
-    var deviceFetched: DeviceMO? = nil
+    var deviceFetched: DeviceMO? = nil                    // used to hold the device selected by the button
     
     // UI elements
-    @IBOutlet weak var githubField: UITextField!
-    @IBOutlet weak var publicSwitch: UISwitch!
-    @IBOutlet weak var contactEmailField: UITextField!
+    @IBOutlet weak var githubField: UITextField!          // contains a link to the project's Github
+    @IBOutlet weak var publicSwitch: UISwitch!            // when on, the switch reveals fields to make a project public
+    @IBOutlet weak var contactEmailField: UITextField!    // allows user to put a contact email to review their project
     @IBOutlet weak var contactEmailLabel: UILabel!
-    @IBOutlet weak var deviceButton: UIButton!
+    @IBOutlet weak var deviceButton: UIButton!            // pressing allows user to select a device to use with project
     
     
     /******************
@@ -38,7 +38,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         contactEmailLabel.alpha = 0
         contactEmailField.alpha = 0
         
-        // load the keyboard hider
+        // load the keyboard dismisser
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProjectAddViewController.keyboardHide))
         view.addGestureRecognizer(keyboardHide)
     }
@@ -55,7 +55,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
     **/
     func saveProjectInfo(){
         
-        // if any fields are empty
+        // if any fields are empty, tell the user to fill them out
         if(githubField.text == "" || (publicSwitch.isOn && contactEmailField.text == "") || deviceButton.currentTitle == "Select") {
             let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields and select one of your currently registered devices.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
@@ -72,13 +72,14 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
             project.projectName = "Test name"
             project.remoteType = "SingleButton"
             
+            // save the edited CoreData
             do {
                 try context.save()
             } catch {
                 fatalError("Failure to save context: \(error)")
             }
             
-            // pop to ProjectMenuVC
+            // pop to ProjectMenuVC (root)
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -106,51 +107,59 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
         UI methods
     ******************/
     
+    /// gives info on what happens when a project is made public
     @IBAction func publicInfoButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Make Project Public", message: "The project will be sent in for approval to be visible to other users in the app. Please ensure that you have followed the proper guidelines for submission prior to making your project public. You will need to provide your email to let us contact you when your project is approved.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    /// gives info on how to add a project
     @IBAction func projectInfoButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Add Custom Project", message: "This allows you to add any project that you have created. The project will be downloaded from GitHub and configured on both your phone and your device when the button is pressed. You must provide a valid GitHub link. The project must conform to the proper guidelines to be interpreted in the app properly.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    /// pulls up a DeviceMenuVC to allow a user to select a device to use with the project
     @IBAction func deviceButtonPressed(_ sender: UIButton) {
         
-        //push the DeviceMenuViewController and set it to the "select" option
+        // load a DeviceMenuView
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "DeviceMenuViewController") as! DeviceMenuViewController
-        nextVC.delegate = self
-        nextVC.mode = "addToProject"
-        self.navigationController?.pushViewController(nextVC, animated: true)
         
+        // let the DeviceMenuVC write back to this view
+        nextVC.delegate = self
+        
+        // let the DeviceMenuVC know that it is being used to store a device in a ProjectAddVC
+        nextVC.mode = "addToProject"
+        
+        // push the DeviceMenuView
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    /// add project button
     @IBAction func addPressed(_ sender: UIButton) {
         saveProjectInfo()
     }
     
-    
+    /// called when the switch is pressed
     @IBAction func switchTriggered(_ sender: Any) {
-        
         UIView.animate(withDuration: 0.2, animations: {
-            
+            // if the switch is visible, make it invisible. if it is invisible, make it visible.
             self.contactEmailField.alpha = 1.0 - self.contactEmailField.alpha
             self.contactEmailLabel.alpha = 1.0 - self.contactEmailLabel.alpha
-            
         })
     }
     
+    /// called when the view is written to
     func writeValueBack(value: String, device: DeviceMO) {
         deviceButton.setTitle(value, for: .normal)
         deviceFetched = device
     }
     
     
-    // hides keyboard when tapping out of text field
+    /// hides keyboard when tapping out of text field
     func keyboardHide() {
         view.endEditing(true)
     }

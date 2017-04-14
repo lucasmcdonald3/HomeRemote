@@ -19,13 +19,13 @@ class DeviceAddViewController: UIViewController {
     var devices: [DeviceMO] = []          // list of devices
     
     // UI Elements
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var ipField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var nicknameField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!    // contains SSH username
+    @IBOutlet weak var ipField: UITextField!          // contains SSH IP
+    @IBOutlet weak var passwordField: UITextField!    // contains SSH password
+    @IBOutlet weak var nicknameField: UITextField!    // nickname given to device
     
     // Navigational elements
-    var mode = "Add"                      // state the VC is loaded in (add is default, meaning add/save a device)
+    var mode = "Add"                      // state the VC is loaded in (add is default)
     
     
     /******************
@@ -39,8 +39,6 @@ class DeviceAddViewController: UIViewController {
         if (mode == "Edit"){
             updateFieldsFromDevice()
         }
-        
-        retrieveDeviceList()
         
         // load the keyboard dismisser
         let keyboardHide: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DeviceAddViewController.keyboardHide))
@@ -90,7 +88,7 @@ class DeviceAddViewController: UIViewController {
         
         // branch between adding or editing a device
         if(mode == "Add"){
-            // if any fields are empty
+            // if any fields are empty, tell the user to fill them out
             if(ipField.text == "" || usernameField.text == "" || passwordField.text == "" || nicknameField.text == "") {
                 let alert = UIAlertController(title: "Empty Field", message: "Please enter information into all fields.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
@@ -117,6 +115,7 @@ class DeviceAddViewController: UIViewController {
                     device.password = passwordField.text
                     device.nickname = nicknameField.text
                     
+                    // save the edited CoreData
                     do {
                         try context.save()
                     } catch {
@@ -169,13 +168,14 @@ class DeviceAddViewController: UIViewController {
     **/
     func updateFieldsFromDevice() {
         
+        // get the requested device
         let device = devices[deviceInt]
         
+        // update this view's UITextFields to the device's fields' values
         ipField.text = device.ip
         usernameField.text = device.username
         passwordField.text = device.password
         nicknameField.text = device.nickname
-        
     }
     
     @IBAction func usernameDisappear(_ sender: UITextField) {
@@ -194,38 +194,36 @@ class DeviceAddViewController: UIViewController {
         nicknameField.resignFirstResponder()
     }
     
-    // next button between username field and ip field
+    /// next button between username field and ip field
     @IBAction func userToPassword(_ sender: UITextField) {
         usernameField.resignFirstResponder()
         ipField.becomeFirstResponder()
     }
     
-    // next button between ip field and password field
+    /// next button between ip field and password field
     @IBAction func ipToUser(_ sender: UITextField) {
         ipField.resignFirstResponder()
         passwordField.becomeFirstResponder()
     }
     
+    /// next button between password field and nickname field
     @IBAction func passwordToNickname(_ sender: UITextField) {
         passwordField.resignFirstResponder()
         nicknameField.becomeFirstResponder()
     }
 
-    
-    // called from passwordfield's go button
+    /// called from passwordfield's go button
     @IBAction func loginFromGoKeyboard(_ sender: AnyObject) {
         saveDeviceInfo()
     }
 
-    // called from the add button on the screen
+    /// called from the add button on the screen
     @IBAction func loginButton(_ sender: UIButton) {
         saveDeviceInfo()
     }
     
-    // hides keyboard when tapping out of text field
+    /// hides keyboard when tapping out of text field
     func keyboardHide() {
         view.endEditing(true)
     }
-    
-    
 }

@@ -14,13 +14,13 @@ import CoreData
 class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Storage / data elements
-    var tableViewData = [String]()
+    var tableViewData = [String]()                 // array read by the UITableView
     let cellReuseIdentifier = "cell"
     var objectNumber = 0
-    var devices: [DeviceMO] = []
-    var session = SSHConnection.init()
-    var mode: String = "getDeviceInfo"
-    weak var delegate: writeValueBackDelegate?
+    var devices: [DeviceMO] = []                   // array deviceMOs are held in
+    var session = SSHConnection.init()             // dummy initialization for class scope
+    var mode: String = "getDeviceInfo"             // current state of the view (adding, editing, sending info, etc.)
+    weak var delegate: writeValueBackDelegate?     // class can write to other classes
     // CoreData elements
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -67,7 +67,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
      */
     func retrieveDeviceList() {
 
-        // get list of projectMOs as CoreData
+        // get list of deviceMOs as CoreData
         let devicesFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Device")
         
         // convert CoreData to an array
@@ -133,6 +133,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
           UI Methods
     *********************/
     
+    /// get the number of elements that should be in the tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
     }
@@ -164,26 +165,33 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
+    // allows editing of tableView
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
+    // deleting element from table
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
+            // remove from CoreData
             context.delete(devices[indexPath.row])
+            
+            // re-save CoreData
             appDelegate.saveContext()
             
+            // remove from list of devices
             devices.remove(at: indexPath.row)
+            
+            // remove from tableViewData
             tableViewData.remove(at: indexPath.row)
+            
+            // reload table view
             deviceList.reloadData()
-            
-            
         }
     }
     
+    // called when the edit button is pressed
     @IBAction func editPressed(_ sender: UIBarButtonItem) {
         deviceList.setEditing(!deviceList.isEditing, animated: true)
     }
