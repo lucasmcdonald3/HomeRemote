@@ -51,7 +51,7 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         retrieveDeviceList()
-        updateDevicesView()
+        //updateDevicesView()
     }
     
     
@@ -88,6 +88,10 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
         // tell the UITableView delegate to be ready to receieve changes
         self.deviceList.beginUpdates()
         
+        self.tableViewData.removeAll()
+        
+        var i = 0
+        
         // add each device to the UITableView's delegate
         for device in devices {
             
@@ -95,7 +99,8 @@ class DeviceMenuViewController: UIViewController, UITableViewDelegate, UITableVi
             self.tableViewData.append(device.nickname!)
             
             // let the UITableView know that its delegate has added an extra device
-            self.deviceList.insertRows(at: [IndexPath(row: deviceList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+            self.deviceList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+            i+=1
         }
         
         // end update session for the UITableView, allowing it to update correctly

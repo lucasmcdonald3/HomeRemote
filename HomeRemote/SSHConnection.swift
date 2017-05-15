@@ -75,12 +75,12 @@ class SSHConnection {
     /// check if the connection's username and IP are correct
     func checkConnection() -> Bool {
         //cases for handling login errors/successes. to be expanded on later.
-        return NMsession.isConnected
+        return NMsession!.isConnected
     }
     
     /// check if the connection's password is correct
     func checkAuthorization() -> Bool {
-        return NMsession.isAuthorized
+        return NMsession!.isAuthorized
     }
     
     /// send an SSH command; print output, but otherwise essentially ignore the output

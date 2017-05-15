@@ -70,7 +70,7 @@ class ProjectAddViewController: UIViewController, writeValueBackDelegate {
             project.deviceUsed = deviceFetched
             project.projectDescription = "Test description."
             project.projectName = "Test name"
-            project.remoteType = "SingleButton"
+            project.remoteType = "Stepper"
             
             // save the edited CoreData
             do {

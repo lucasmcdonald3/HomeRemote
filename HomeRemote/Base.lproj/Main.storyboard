@@ -256,9 +256,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editButton" destination="Z7B-CE-hhY" id="8Ns-0A-aBV"/>
-                        <outlet property="projectsList" destination="OFM-LV-4q9" id="7x4-ce-sL2"/>
+                        <outlet property="projectsList" destination="OFM-LV-4q9" id="k6U-93-ICb"/>
                         <outlet property="searchButton" destination="QPr-c3-p9z" id="fpH-nm-VUD"/>
-                        <outlet property="settingsButton" destination="hRx-4R-APS" id="0ow-xv-XIn"/>
+                        <outlet property="settingsButton" destination="hRx-4R-APS" id="LZL-bW-1ec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oNE-e8-DCm" userLabel="First Responder" sceneMemberID="firstResponder"/>

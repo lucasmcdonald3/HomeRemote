@@ -47,13 +47,13 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         // populate the table with projects from CoreData
         retrieveProjectList()
-        populateProjectsView()
+        //populateProjectsView()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         retrieveProjectList()
-        updateProjectsView()
+        //updateProjectsView()
     }
     
     /*******************
@@ -89,18 +89,24 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         // tell the UITableView delegate to be ready to receieve changes
         self.projectsList.beginUpdates()
         
+        self.tableViewData.removeAll()
+        
         // add each project to the UITableView's delegate
+        var i = 0
         for project in projects {
             
             // add the formatted String
             self.tableViewData.append(project.projectName! + ": " + (project.deviceUsed?.nickname)!)
             
             // let the UITableView know that its delegate has added an extra device
-            self.projectsList.insertRows(at: [IndexPath(row: projectsList.numberOfRows(inSection: 0), section: 0)], with: .automatic)
+            print(projectsList.numberOfRows(inSection: 0))
+            self.projectsList.insertRows(at: [IndexPath(row: i, section: 0)], with: .automatic)
+            i+=1
         }
         
         // end update session for the UITableView, allowing it to update correctly
         self.projectsList.endUpdates()
+        
     }
     
     /**
@@ -129,16 +135,21 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    /**
+ 
+     Returns a class with the same name as the argument String
+ 
+    */
     func stringClassFromString(_ className: String) -> AnyClass! {
         
         /// get namespace
-        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String;
+        let namespace = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
         
         /// get 'anyClass' with classname and namespace
-        let cls: AnyClass = NSClassFromString("\(namespace).\(className)")!;
+        let cls: AnyClass = NSClassFromString("\(namespace).\(className)")!
         
         // return AnyClass!
-        return cls;
+        return cls
     }
     
     
@@ -146,7 +157,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
           UI Methods
     *********************/
     
-    /// get the number of elements that should be in the tableView
+    // get the number of elements that should be in the tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
     }
@@ -183,8 +194,7 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
             var remoteVC:RemoteViewController
             
             // cast the RemoteVC into the VC specified by the project
-            let AdaptiveVC = stringClassFromString(project.remoteType + "RemoteViewController") as! RemoteViewController.Type
-            remoteVC = storyBoard.instantiateViewController(withIdentifier: project.remoteType! + "RemoteViewController") as AdaptiveVC
+            remoteVC = storyBoard.instantiateViewController(withIdentifier: project.remoteType! + "RemoteViewController") as! RemoteViewController
             
             // give RemoteVC the data it needs to reinitialize the ssh connection
             remoteVC.session = self.session
@@ -195,7 +205,9 @@ class ProjectMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         // if the connection failed for some reason (incorrect login/ip info)
         else {
-            
+            let alert = UIAlertController(title: "Connection Failed", message: "We could not connect to the device. Please check your connection.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

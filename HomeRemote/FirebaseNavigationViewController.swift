@@ -73,7 +73,7 @@ class FirebaseNavigationViewController: UITableViewController {
             let value = snapshot.value as? NSDictionary
             
             // get link to Github project
-            var retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
+            let retrievedGithubLink = value?[self.tableViewData[indexPath.row]] as? String ?? ""
             detailVC.githubLink = retrievedGithubLink
             
             // initiate URL request to directly access PhoneInfo.json
